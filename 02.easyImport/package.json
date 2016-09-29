@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-postcss": "^6.2.0",
+    "postcss-nested": "^1.0.0",
+    "postcss-easy-import": "^1.0.1",
+    "postcss-simple-vars": "^3.0.0"
+  }
+}
