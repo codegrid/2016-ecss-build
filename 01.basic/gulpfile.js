@@ -1,6 +1,6 @@
 var gulp = require("gulp");
-// PostCSSのプラグイン
 var postcss = require("gulp-postcss");
+// PostCSSのプラグイン
 var simpleVars = require("postcss-simple-vars");
 var nested = require("postcss-nested");
 // その他
