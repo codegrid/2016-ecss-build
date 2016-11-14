@@ -45,3 +45,129 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+.ct-Module1 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.ct-Module1_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.ct-Module1_ChildNode1-variation1 {
+  background: blue;
+}
+.ct-Module1_ChildNode1-variation2 {
+  background: yellow;
+}
+.ct-Module1_ChildNode1-variation3 {
+  background: navy;
+}
+.ct-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.ct-Module2_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.ct-Module2_ChildNode1-variation1 {
+  background: blue;
+}
+.ct-Module2_ChildNode1-variation2 {
+  background: yellow;
+}
+.ct-Module2_ChildNode1-variation3 {
+  background: navy;
+}
+.pd-Module1 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.pd-Module1_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.pd-Module1_ChildNode1-variation1 {
+  background: blue;
+}
+.pd-Module1_ChildNode1-variation2 {
+  background: yellow;
+}
+.pd-Module1_ChildNode1-variation3 {
+  background: navy;
+}
+.pd-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.pd-Module2_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.pd-Module2_ChildNode1-variation1 {
+  background: blue;
+}
+.pd-Module2_ChildNode1-variation2 {
+  background: yellow;
+}
+.pd-Module2_ChildNode1-variation3 {
+  background: navy;
+}
+.tp-Module1 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.tp-Module1_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.tp-Module1_ChildNode1-variation1 {
+  background: blue;
+}
+.tp-Module1_ChildNode1-variation2 {
+  background: yellow;
+}
+.tp-Module1_ChildNode1-variation3 {
+  background: navy;
+}
+.tp-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.tp-Module2_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.tp-Module2_ChildNode1-variation1 {
+  background: blue;
+}
+.tp-Module2_ChildNode1-variation2 {
+  background: yellow;
+}
+.tp-Module2_ChildNode1-variation3 {
+  background: navy;
+}
