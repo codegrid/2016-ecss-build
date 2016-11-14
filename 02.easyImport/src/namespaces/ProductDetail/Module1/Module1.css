@@ -2,7 +2,7 @@ $width: 100px;
 $height: 100px;
 $baseColor: pink;
 
-.ns2 {
+.pd {
   &-Module1 {
     font-size: $baseFontSize;
     width: $width;

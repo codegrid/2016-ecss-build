@@ -1,0 +1,15 @@
+.ns1 {
+  &-Module2 {
+    $dir: ../imgs;
+    @each $icon in (Twitter, Facebook, Youtube) {
+      &-Icon$icon {
+        background: url('$dir/$icon.png');
+      }
+    }
+    @for $percentage from 20 to 100 by 20 {
+      &-Col$percentage {
+        width: $(percentage)%;
+      }
+    }
+  }
+}

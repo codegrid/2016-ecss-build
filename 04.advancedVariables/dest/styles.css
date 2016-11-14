@@ -56,25 +56,29 @@ table {
   display: table;
   clear: both;
 }
-.ns1-Module2 {
-  width: 200px;
-  height: 200px;
-  background: pink;
+.ns1-Module2-IconTwitter {
+  background: url('../imgs/Twitter.png');
 }
-.ns1-Module2_ChildNode1 {
-  width: 50px;
-  height: 50px;
-  margin: 25px;
-  background: orange;
+.ns1-Module2-IconFacebook {
+  background: url('../imgs/Facebook.png');
 }
-.ns1-Module2_ChildNode1-variation1 {
-  background: blue;
+.ns1-Module2-IconYoutube {
+  background: url('../imgs/Youtube.png');
 }
-.ns1-Module2_ChildNode1-variation2 {
-  background: yellow;
+.ns1-Module2-Col20 {
+  width: 20%;
 }
-.ns1-Module2_ChildNode1-variation3 {
-  background: navy;
+.ns1-Module2-Col40 {
+  width: 40%;
+}
+.ns1-Module2-Col60 {
+  width: 60%;
+}
+.ns1-Module2-Col80 {
+  width: 80%;
+}
+.ns1-Module2-Col100 {
+  width: 100%;
 }
 .ns2-Module1 {
   font-size: 14px;
