@@ -99,6 +99,11 @@ table {
   margin: 25px;
   background: orange;
 }
+.pd-Module1_ChildNode1::after {
+  content: '';
+  display: table;
+  clear: both;
+}
 .pd-Module1_ChildNode1-variation1 {
   background: blue;
 }
