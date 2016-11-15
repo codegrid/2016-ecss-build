@@ -2,13 +2,12 @@ $width: 100px;
 $height: 100px;
 $baseColor: pink;
 
-.ns2 {
+.pd {
   &-Module1 {
     font-size: $baseFontSize;
     width: $width;
     height: $height;
     background: $baseColor;
-    @mixin clearfix;
     &_ChildNode1 {
       width: 50px;
       height: 50px;

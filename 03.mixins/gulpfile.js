@@ -8,25 +8,11 @@ var mixins = require("postcss-mixins");
 // その他
 var notify = require("gulp-notify");
 
-// mixinsのオプション
-var mixinsOptions = {
-  mixins: {
-    colorBox: function(mixin, color) {
-      return {
-        'border': '8px solid ' + color,
-        'color': color,
-        'font-size': '18px',
-        'padding': '20px 5px',
-      };
-    }
-  }
-};
-
 gulp.task("compileCss", function() {
   // PostCSSのプラグインらを指定
   var processors = [
     easyImport({ glob: true }),
-    mixins(mixinsOptions),
+    mixins,
     simpleVars,
     nested,
   ];

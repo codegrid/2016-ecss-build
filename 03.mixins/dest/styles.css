@@ -45,80 +45,129 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.ns1-Module1 {
-  border: 8px solid red;
-  color: red;
-  font-size: 18px;
-  padding: 20px 5px;
-}
-.ns1-Module1_ChildNode1::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.ns1-Module2 {
-  width: 200px;
-  height: 200px;
-  background: pink;
-}
-.ns1-Module2_ChildNode1 {
-  width: 50px;
-  height: 50px;
-  margin: 25px;
-  background: orange;
-}
-.ns1-Module2_ChildNode1-variation1 {
-  background: blue;
-}
-.ns1-Module2_ChildNode1-variation2 {
-  background: yellow;
-}
-.ns1-Module2_ChildNode1-variation3 {
-  background: navy;
-}
-.ns2-Module1 {
+.ct-Module1 {
   font-size: 14px;
   width: 100px;
   height: 100px;
   background: pink;
 }
-.ns2-Module1::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.ns2-Module1_ChildNode1 {
+.ct-Module1_ChildNode1 {
   width: 50px;
   height: 50px;
   margin: 25px;
   background: orange;
 }
-.ns2-Module1_ChildNode1-variation1 {
+.ct-Module1_ChildNode1-variation1 {
   background: blue;
 }
-.ns2-Module1_ChildNode1-variation2 {
+.ct-Module1_ChildNode1-variation2 {
   background: yellow;
 }
-.ns2-Module1_ChildNode1-variation3 {
+.ct-Module1_ChildNode1-variation3 {
   background: navy;
 }
-.ns2-Module2 {
-  width: 200px;
-  height: 200px;
+.ct-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
   background: pink;
 }
-.ns2-Module2_ChildNode1 {
+.ct-Module2_ChildNode1 {
   width: 50px;
   height: 50px;
   margin: 25px;
   background: orange;
 }
-.ns2-Module2_ChildNode1-variation1 {
+.ct-Module2_ChildNode1-variation1 {
   background: blue;
 }
-.ns2-Module2_ChildNode1-variation2 {
+.ct-Module2_ChildNode1-variation2 {
   background: yellow;
 }
-.ns2-Module2_ChildNode1-variation3 {
+.ct-Module2_ChildNode1-variation3 {
+  background: navy;
+}
+.pd-Module1 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.pd-Module1_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.pd-Module1_ChildNode1-variation1 {
+  background: blue;
+}
+.pd-Module1_ChildNode1-variation2 {
+  background: yellow;
+}
+.pd-Module1_ChildNode1-variation3 {
+  background: navy;
+}
+.pd-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.pd-Module2_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.pd-Module2_ChildNode1-variation1 {
+  background: blue;
+}
+.pd-Module2_ChildNode1-variation2 {
+  background: yellow;
+}
+.pd-Module2_ChildNode1-variation3 {
+  background: navy;
+}
+.tp-Module1 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.tp-Module1_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.tp-Module1_ChildNode1-variation1 {
+  background: blue;
+}
+.tp-Module1_ChildNode1-variation2 {
+  background: yellow;
+}
+.tp-Module1_ChildNode1-variation3 {
+  background: navy;
+}
+.tp-Module2 {
+  font-size: 14px;
+  width: 100px;
+  height: 100px;
+  background: pink;
+}
+.tp-Module2_ChildNode1 {
+  width: 50px;
+  height: 50px;
+  margin: 25px;
+  background: orange;
+}
+.tp-Module2_ChildNode1-variation1 {
+  background: blue;
+}
+.tp-Module2_ChildNode1-variation2 {
+  background: yellow;
+}
+.tp-Module2_ChildNode1-variation3 {
   background: navy;
 }
