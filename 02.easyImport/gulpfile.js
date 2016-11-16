@@ -14,7 +14,7 @@ gulp.task("compileCss", function() {
     simpleVars,
     nested,
   ];
-  return gulp.src("src/styles.css") // CSSファイル全てが対象
+  return gulp.src("src/styles.css") // styles.cssだけが対象
     .pipe(postcss(processors)) // PostCSSに渡して処理させる
     .pipe(gulp.dest("./dest")) // destに出力
     .pipe(notify("CSS compiled.")); // 通知

@@ -141,10 +141,9 @@ table {
   background: pink;
 }
 .tp-Module1_ChildNode1 {
-  width: 50px;
-  height: 50px;
   margin: 25px;
   background: orange;
+  color: red;
 }
 .tp-Module1_ChildNode1-variation1 {
   background: blue;
@@ -155,6 +154,7 @@ table {
 .tp-Module1_ChildNode1-variation3 {
   background: navy;
 }
+.tp-Module1_ChildNode2 {}
 .tp-Module2 {
   font-size: 14px;
   width: 100px;
