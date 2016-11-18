@@ -13,7 +13,6 @@ $baseColor: pink;
       height: 50px;
       margin: 25px;
       background: orange;
-      @mixin clearfix;
       &-variation1 { background: blue; }
       &-variation2 { background: yellow; }
       &-variation3 { background: navy; }

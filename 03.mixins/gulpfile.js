@@ -13,7 +13,7 @@ var notify = require("gulp-notify");
 var mixinsOptions = {
   mixins: {
     icon: function(mixin, path) {
-      path = path.replace(/\"/gi, ""); // パス前後の"を削除
+      path = path.replace(/\"/g, ""); // パス前後の"を削除
       // gulpから引くためのパス
       var path_src = "src/namespaces/" + path;
       // 結果のCSSに出力するパス
@@ -21,11 +21,11 @@ var mixinsOptions = {
       // サイズを計算
       var dimensions = sizeOf(path_src);
       return {
-        "display": "inline-block",
-        "width": dimensions.width,
-        "height": dimensions.height,
         "&::after": {
           "content": '""',
+          "display": "inline-block",
+          "width": dimensions.width,
+          "height": dimensions.height,
           "background-image": 'url("' + path_result + '")',
         }
       };
