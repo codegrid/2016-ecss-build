@@ -8,7 +8,9 @@ var mixins = require("postcss-mixins");
 // その他
 var notify = require("gulp-notify");
 // postcss-mixinsのオプション
-var mixinsOptions = require('./src/baseCss/globalMixins.js');
+var mixinsOptions = {
+  mixins: require('./src/baseCss/globalMixins.js')
+}
 
 gulp.task("compileCss", function() {
   // PostCSSのプラグインらを指定

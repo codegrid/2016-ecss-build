@@ -1,8 +1,0 @@
-.ns1 {
-  &-Module1 {
-    @mixin colorBox red;
-    &_ChildNode1 {
-      @mixin clearfix;
-    }
-  }
-}
