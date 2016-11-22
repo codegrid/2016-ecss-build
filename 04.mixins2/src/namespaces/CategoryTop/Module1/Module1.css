@@ -2,7 +2,7 @@ $width: 100px;
 $height: 100px;
 $baseColor: pink;
 
-.tp {
+.ct {
   &-Module1 {
     font-size: $baseFontSize;
     width: $width;
@@ -13,15 +13,10 @@ $baseColor: pink;
       height: 50px;
       margin: 25px;
       background: orange;
+      @mixin clearfix;
       &-variation1 { background: blue; }
       &-variation2 { background: yellow; }
       &-variation3 { background: navy; }
-    }
-    &_ChildNode2 {
-      @mixin icon "TopPage/Module1/imgs/icon1.png";
-    }
-    &_ChildNode3 {
-      @mixin icon "TopPage/Module1/imgs/icon2.png";
     }
   }
 }

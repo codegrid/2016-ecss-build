@@ -3,7 +3,7 @@ $height: 100px;
 $baseColor: pink;
 
 .tp {
-  &-Module1 {
+  &-Module2 {
     font-size: $baseFontSize;
     width: $width;
     height: $height;
@@ -16,12 +16,6 @@ $baseColor: pink;
       &-variation1 { background: blue; }
       &-variation2 { background: yellow; }
       &-variation3 { background: navy; }
-    }
-    &_ChildNode2 {
-      @mixin icon "TopPage/Module1/imgs/icon1.png";
-    }
-    &_ChildNode3 {
-      @mixin icon "TopPage/Module1/imgs/icon2.png";
     }
   }
 }
