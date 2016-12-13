@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=580">
+<link rel="stylesheet" href="styles.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+$(function() {
+
+  (function() {
+    var w = 0;
+    var b = 0;
+    var currentCls;
+    var tmpl = '<table>';
+    var header = $('#tmpl-hwb-header').html();
+    tmpl += header;
+    while(w <= 100 && b <= 100) {
+      if(b === 0) {
+        tmpl += '<tr><th>' + w + '%</th>';
+      }
+      currentCls = 'hwb-' + w + '-' + b;
+      tmpl += '<td class="' + currentCls + '"></td>';
+      b += 10;
+      if(b > 100) {
+        tmpl += '</tr>';
+        b = 0;
+        w += 10;
+      }
+    }
+    tmpl += '</table>';
+    $('[data-hwb-demo-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+
+});
+</script>
+<script type="text/x-template" id="tmpl-hwb-header">
+  <tr>
+    <th>W/B</th>
+    <th>0%</th>
+    <th>10%</th>
+    <th>20%</th>
+    <th>30%</th>
+    <th>40%</th>
+    <th>50%</th>
+    <th>60%</th>
+    <th>70%</th>
+    <th>80%</th>
+    <th>90%</th>
+    <th>100%</th>
+  </tr>
+</script>
+</head>
+<body>
+
+<h1>HWB demo</h1>
+
+<div class="hwbDemo">
+  <h2>0° Reds</h2>
+  <pre><code>background-color: hwb(0deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color1" data-hwb-demo-container></div>
+  <h2>30° Red-Yellows (Oranges) </h2>
+  <pre><code>background-color: hwb(30deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color2" data-hwb-demo-container></div>
+  <h2>60° Yellows </h2>
+  <pre><code>background-color: hwb(60deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color3" data-hwb-demo-container></div>
+  <h2>90° Yellow-Greens </h2>
+  <pre><code>background-color: hwb(90deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color4" data-hwb-demo-container></div>
+  <h2>120° Greens </h2>
+  <pre><code>background-color: hwb(120deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color5" data-hwb-demo-container></div>
+  <h2>150° Green-Cyans </h2>
+  <pre><code>background-color: hwb(150deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color6" data-hwb-demo-container></div>
+  <h2>180° Cyans </h2>
+  <pre><code>background-color: hwb(180deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color7" data-hwb-demo-container></div>
+  <h2>210° Cyan-Blues </h2>
+  <pre><code>background-color: hwb(210deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color8" data-hwb-demo-container></div>
+  <h2>240° Blues </h2>
+  <pre><code>background-color: hwb(240deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color9" data-hwb-demo-container></div>
+  <h2>270° Blue-Magentas </h2>
+  <pre><code>background-color: hwb(270deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color10" data-hwb-demo-container></div>
+  <h2>300° Magentas </h2>
+  <pre><code>background-color: hwb(300deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color11" data-hwb-demo-container></div>
+  <h2>330° Magenta-Reds </h2>
+  <pre><code>background-color: hwb(330deg, WHITENESS, BLACKNESS);</code></pre>
+  <div class="hwbDemo-color12" data-hwb-demo-container></div>
+</div>
+
+</body>
+</html>

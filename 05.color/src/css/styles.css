@@ -1,0 +1,852 @@
+body {
+  background: #ccc;
+  padding: 10px 10px;
+}
+h2 {
+  margin: 1.5em 0 0;;
+  padding: 1em 0 .5em;
+  border-top: 1px solid #000;
+}
+pre {
+  border: 1px solid #666;
+  background: #fff;
+  code {
+    display: block;
+    padding: 13px 15px;
+  }
+}
+
+.boxLabel {
+  position: absolute;
+  display: block;
+  top: -20px;
+  font-size: .7em;
+  line-height: 1.2;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@define-mixin hwbDemo $hue {
+  table {
+    border-spacing: 2px;
+    border: 0;
+  }
+  th {
+    font-size: .6em;
+    vertical-align: middle;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+  }
+  td {
+    width: 40px;
+    height: 40px;
+    border: 0;
+  }
+  .hwb-0-0   { background-color: hwb($hue, 0%, 0%); }
+  .hwb-0-10  { background-color: hwb($hue, 0%, 10%); }
+  .hwb-0-20  { background-color: hwb($hue, 0%, 20%); }
+  .hwb-0-30  { background-color: hwb($hue, 0%, 30%); }
+  .hwb-0-40  { background-color: hwb($hue, 0%, 40%); }
+  .hwb-0-50  { background-color: hwb($hue, 0%, 50%); }
+  .hwb-0-60  { background-color: hwb($hue, 0%, 60%); }
+  .hwb-0-70  { background-color: hwb($hue, 0%, 70%); }
+  .hwb-0-80  { background-color: hwb($hue, 0%, 80%); }
+  .hwb-0-90  { background-color: hwb($hue, 0%, 90%); }
+  .hwb-0-100 { background-color: hwb($hue, 0%, 100%); }
+  .hwb-10-0   { background-color: hwb($hue, 10%, 0%); }
+  .hwb-10-10  { background-color: hwb($hue, 10%, 10%); }
+  .hwb-10-20  { background-color: hwb($hue, 10%, 20%); }
+  .hwb-10-30  { background-color: hwb($hue, 10%, 30%); }
+  .hwb-10-40  { background-color: hwb($hue, 10%, 40%); }
+  .hwb-10-50  { background-color: hwb($hue, 10%, 50%); }
+  .hwb-10-60  { background-color: hwb($hue, 10%, 60%); }
+  .hwb-10-70  { background-color: hwb($hue, 10%, 70%); }
+  .hwb-10-80  { background-color: hwb($hue, 10%, 80%); }
+  .hwb-10-90  { background-color: hwb($hue, 10%, 90%); }
+  .hwb-10-100 { background-color: hwb($hue, 10%, 100%); }
+  .hwb-20-0   { background-color: hwb($hue, 20%, 0%); }
+  .hwb-20-10  { background-color: hwb($hue, 20%, 10%); }
+  .hwb-20-20  { background-color: hwb($hue, 20%, 20%); }
+  .hwb-20-30  { background-color: hwb($hue, 20%, 30%); }
+  .hwb-20-40  { background-color: hwb($hue, 20%, 40%); }
+  .hwb-20-50  { background-color: hwb($hue, 20%, 50%); }
+  .hwb-20-60  { background-color: hwb($hue, 20%, 60%); }
+  .hwb-20-70  { background-color: hwb($hue, 20%, 70%); }
+  .hwb-20-80  { background-color: hwb($hue, 20%, 80%); }
+  .hwb-20-90  { background-color: hwb($hue, 20%, 90%); }
+  .hwb-20-100 { background-color: hwb($hue, 20%, 100%); }
+  .hwb-30-0   { background-color: hwb($hue, 30%, 0%); }
+  .hwb-30-10  { background-color: hwb($hue, 30%, 10%); }
+  .hwb-30-20  { background-color: hwb($hue, 30%, 20%); }
+  .hwb-30-30  { background-color: hwb($hue, 30%, 30%); }
+  .hwb-30-40  { background-color: hwb($hue, 30%, 40%); }
+  .hwb-30-50  { background-color: hwb($hue, 30%, 50%); }
+  .hwb-30-60  { background-color: hwb($hue, 30%, 60%); }
+  .hwb-30-70  { background-color: hwb($hue, 30%, 70%); }
+  .hwb-30-80  { background-color: hwb($hue, 30%, 80%); }
+  .hwb-30-90  { background-color: hwb($hue, 30%, 90%); }
+  .hwb-30-100 { background-color: hwb($hue, 30%, 100%); }
+  .hwb-40-0   { background-color: hwb($hue, 40%, 0%); }
+  .hwb-40-10  { background-color: hwb($hue, 40%, 10%); }
+  .hwb-40-20  { background-color: hwb($hue, 40%, 20%); }
+  .hwb-40-30  { background-color: hwb($hue, 40%, 30%); }
+  .hwb-40-40  { background-color: hwb($hue, 40%, 40%); }
+  .hwb-40-50  { background-color: hwb($hue, 40%, 50%); }
+  .hwb-40-60  { background-color: hwb($hue, 40%, 60%); }
+  .hwb-40-70  { background-color: hwb($hue, 40%, 70%); }
+  .hwb-40-80  { background-color: hwb($hue, 40%, 80%); }
+  .hwb-40-90  { background-color: hwb($hue, 40%, 90%); }
+  .hwb-40-100 { background-color: hwb($hue, 40%, 100%); }
+  .hwb-50-0   { background-color: hwb($hue, 50%, 0%); }
+  .hwb-50-10  { background-color: hwb($hue, 50%, 10%); }
+  .hwb-50-20  { background-color: hwb($hue, 50%, 20%); }
+  .hwb-50-30  { background-color: hwb($hue, 50%, 30%); }
+  .hwb-50-40  { background-color: hwb($hue, 50%, 40%); }
+  .hwb-50-50  { background-color: hwb($hue, 50%, 50%); }
+  .hwb-50-60  { background-color: hwb($hue, 50%, 60%); }
+  .hwb-50-70  { background-color: hwb($hue, 50%, 70%); }
+  .hwb-50-80  { background-color: hwb($hue, 50%, 80%); }
+  .hwb-50-90  { background-color: hwb($hue, 50%, 90%); }
+  .hwb-50-100 { background-color: hwb($hue, 50%, 100%); }
+  .hwb-60-0   { background-color: hwb($hue, 60%, 0%); }
+  .hwb-60-10  { background-color: hwb($hue, 60%, 10%); }
+  .hwb-60-20  { background-color: hwb($hue, 60%, 20%); }
+  .hwb-60-30  { background-color: hwb($hue, 60%, 30%); }
+  .hwb-60-40  { background-color: hwb($hue, 60%, 40%); }
+  .hwb-60-50  { background-color: hwb($hue, 60%, 50%); }
+  .hwb-60-60  { background-color: hwb($hue, 60%, 60%); }
+  .hwb-60-70  { background-color: hwb($hue, 60%, 70%); }
+  .hwb-60-80  { background-color: hwb($hue, 60%, 80%); }
+  .hwb-60-90  { background-color: hwb($hue, 60%, 90%); }
+  .hwb-60-100 { background-color: hwb($hue, 60%, 100%); }
+  .hwb-70-0   { background-color: hwb($hue, 70%, 0%); }
+  .hwb-70-10  { background-color: hwb($hue, 70%, 10%); }
+  .hwb-70-20  { background-color: hwb($hue, 70%, 20%); }
+  .hwb-70-30  { background-color: hwb($hue, 70%, 30%); }
+  .hwb-70-40  { background-color: hwb($hue, 70%, 40%); }
+  .hwb-70-50  { background-color: hwb($hue, 70%, 50%); }
+  .hwb-70-60  { background-color: hwb($hue, 70%, 60%); }
+  .hwb-70-70  { background-color: hwb($hue, 70%, 70%); }
+  .hwb-70-80  { background-color: hwb($hue, 70%, 80%); }
+  .hwb-70-90  { background-color: hwb($hue, 70%, 90%); }
+  .hwb-70-100 { background-color: hwb($hue, 70%, 100%); }
+  .hwb-80-0   { background-color: hwb($hue, 80%, 0%); }
+  .hwb-80-10  { background-color: hwb($hue, 80%, 10%); }
+  .hwb-80-20  { background-color: hwb($hue, 80%, 20%); }
+  .hwb-80-30  { background-color: hwb($hue, 80%, 30%); }
+  .hwb-80-40  { background-color: hwb($hue, 80%, 40%); }
+  .hwb-80-50  { background-color: hwb($hue, 80%, 50%); }
+  .hwb-80-60  { background-color: hwb($hue, 80%, 60%); }
+  .hwb-80-70  { background-color: hwb($hue, 80%, 70%); }
+  .hwb-80-80  { background-color: hwb($hue, 80%, 80%); }
+  .hwb-80-90  { background-color: hwb($hue, 80%, 90%); }
+  .hwb-80-100 { background-color: hwb($hue, 80%, 100%); }
+  .hwb-90-0   { background-color: hwb($hue, 90%, 0%); }
+  .hwb-90-10  { background-color: hwb($hue, 90%, 10%); }
+  .hwb-90-20  { background-color: hwb($hue, 90%, 20%); }
+  .hwb-90-30  { background-color: hwb($hue, 90%, 30%); }
+  .hwb-90-40  { background-color: hwb($hue, 90%, 40%); }
+  .hwb-90-50  { background-color: hwb($hue, 90%, 50%); }
+  .hwb-90-60  { background-color: hwb($hue, 90%, 60%); }
+  .hwb-90-70  { background-color: hwb($hue, 90%, 70%); }
+  .hwb-90-80  { background-color: hwb($hue, 90%, 80%); }
+  .hwb-90-90  { background-color: hwb($hue, 90%, 90%); }
+  .hwb-90-100 { background-color: hwb($hue, 90%, 100%); }
+  .hwb-100-0   { background-color: hwb($hue, 100%, 0%); }
+  .hwb-100-10  { background-color: hwb($hue, 100%, 10%); }
+  .hwb-100-20  { background-color: hwb($hue, 100%, 20%); }
+  .hwb-100-30  { background-color: hwb($hue, 100%, 30%); }
+  .hwb-100-40  { background-color: hwb($hue, 100%, 40%); }
+  .hwb-100-50  { background-color: hwb($hue, 100%, 50%); }
+  .hwb-100-60  { background-color: hwb($hue, 100%, 60%); }
+  .hwb-100-70  { background-color: hwb($hue, 100%, 70%); }
+  .hwb-100-80  { background-color: hwb($hue, 100%, 80%); }
+  .hwb-100-90  { background-color: hwb($hue, 100%, 90%); }
+  .hwb-100-100 { background-color: hwb($hue, 100%, 100%); }
+}
+
+.hwbDemo-color1 { @mixin hwbDemo 0deg; }
+.hwbDemo-color2 { @mixin hwbDemo 30deg; }
+.hwbDemo-color3 { @mixin hwbDemo 60deg; }
+.hwbDemo-color4 { @mixin hwbDemo 90deg; }
+.hwbDemo-color5 { @mixin hwbDemo 120deg; }
+.hwbDemo-color6 { @mixin hwbDemo 150deg; }
+.hwbDemo-color7 { @mixin hwbDemo 180deg; }
+.hwbDemo-color8 { @mixin hwbDemo 210deg; }
+.hwbDemo-color9 { @mixin hwbDemo 240deg; }
+.hwbDemo-color10 { @mixin hwbDemo 270deg; }
+.hwbDemo-color11 { @mixin hwbDemo 300deg; }
+.hwbDemo-color12 { @mixin hwbDemo 330deg; }
+
+@define-mixin hslDemo $hue {
+  table {
+    border-spacing: 2px;
+    border: 0;
+  }
+  th {
+    font-size: .6em;
+    vertical-align: middle;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+  td {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+  }
+  .hsl-0-0   { background-color: hsl($hue, 0%, 0%); }
+  .hsl-0-10  { background-color: hsl($hue, 0%, 10%); }
+  .hsl-0-20  { background-color: hsl($hue, 0%, 20%); }
+  .hsl-0-30  { background-color: hsl($hue, 0%, 30%); }
+  .hsl-0-40  { background-color: hsl($hue, 0%, 40%); }
+  .hsl-0-50  { background-color: hsl($hue, 0%, 50%); }
+  .hsl-0-60  { background-color: hsl($hue, 0%, 60%); }
+  .hsl-0-70  { background-color: hsl($hue, 0%, 70%); }
+  .hsl-0-80  { background-color: hsl($hue, 0%, 80%); }
+  .hsl-0-90  { background-color: hsl($hue, 0%, 90%); }
+  .hsl-0-100 { background-color: hsl($hue, 0%, 100%); }
+  .hsl-10-0   { background-color: hsl($hue, 10%, 0%); }
+  .hsl-10-10  { background-color: hsl($hue, 10%, 10%); }
+  .hsl-10-20  { background-color: hsl($hue, 10%, 20%); }
+  .hsl-10-30  { background-color: hsl($hue, 10%, 30%); }
+  .hsl-10-40  { background-color: hsl($hue, 10%, 40%); }
+  .hsl-10-50  { background-color: hsl($hue, 10%, 50%); }
+  .hsl-10-60  { background-color: hsl($hue, 10%, 60%); }
+  .hsl-10-70  { background-color: hsl($hue, 10%, 70%); }
+  .hsl-10-80  { background-color: hsl($hue, 10%, 80%); }
+  .hsl-10-90  { background-color: hsl($hue, 10%, 90%); }
+  .hsl-10-100 { background-color: hsl($hue, 10%, 100%); }
+  .hsl-20-0   { background-color: hsl($hue, 20%, 0%); }
+  .hsl-20-10  { background-color: hsl($hue, 20%, 10%); }
+  .hsl-20-20  { background-color: hsl($hue, 20%, 20%); }
+  .hsl-20-30  { background-color: hsl($hue, 20%, 30%); }
+  .hsl-20-40  { background-color: hsl($hue, 20%, 40%); }
+  .hsl-20-50  { background-color: hsl($hue, 20%, 50%); }
+  .hsl-20-60  { background-color: hsl($hue, 20%, 60%); }
+  .hsl-20-70  { background-color: hsl($hue, 20%, 70%); }
+  .hsl-20-80  { background-color: hsl($hue, 20%, 80%); }
+  .hsl-20-90  { background-color: hsl($hue, 20%, 90%); }
+  .hsl-20-100 { background-color: hsl($hue, 20%, 100%); }
+  .hsl-30-0   { background-color: hsl($hue, 30%, 0%); }
+  .hsl-30-10  { background-color: hsl($hue, 30%, 10%); }
+  .hsl-30-20  { background-color: hsl($hue, 30%, 20%); }
+  .hsl-30-30  { background-color: hsl($hue, 30%, 30%); }
+  .hsl-30-40  { background-color: hsl($hue, 30%, 40%); }
+  .hsl-30-50  { background-color: hsl($hue, 30%, 50%); }
+  .hsl-30-60  { background-color: hsl($hue, 30%, 60%); }
+  .hsl-30-70  { background-color: hsl($hue, 30%, 70%); }
+  .hsl-30-80  { background-color: hsl($hue, 30%, 80%); }
+  .hsl-30-90  { background-color: hsl($hue, 30%, 90%); }
+  .hsl-30-100 { background-color: hsl($hue, 30%, 100%); }
+  .hsl-40-0   { background-color: hsl($hue, 40%, 0%); }
+  .hsl-40-10  { background-color: hsl($hue, 40%, 10%); }
+  .hsl-40-20  { background-color: hsl($hue, 40%, 20%); }
+  .hsl-40-30  { background-color: hsl($hue, 40%, 30%); }
+  .hsl-40-40  { background-color: hsl($hue, 40%, 40%); }
+  .hsl-40-50  { background-color: hsl($hue, 40%, 50%); }
+  .hsl-40-60  { background-color: hsl($hue, 40%, 60%); }
+  .hsl-40-70  { background-color: hsl($hue, 40%, 70%); }
+  .hsl-40-80  { background-color: hsl($hue, 40%, 80%); }
+  .hsl-40-90  { background-color: hsl($hue, 40%, 90%); }
+  .hsl-40-100 { background-color: hsl($hue, 40%, 100%); }
+  .hsl-50-0   { background-color: hsl($hue, 50%, 0%); }
+  .hsl-50-10  { background-color: hsl($hue, 50%, 10%); }
+  .hsl-50-20  { background-color: hsl($hue, 50%, 20%); }
+  .hsl-50-30  { background-color: hsl($hue, 50%, 30%); }
+  .hsl-50-40  { background-color: hsl($hue, 50%, 40%); }
+  .hsl-50-50  { background-color: hsl($hue, 50%, 50%); }
+  .hsl-50-60  { background-color: hsl($hue, 50%, 60%); }
+  .hsl-50-70  { background-color: hsl($hue, 50%, 70%); }
+  .hsl-50-80  { background-color: hsl($hue, 50%, 80%); }
+  .hsl-50-90  { background-color: hsl($hue, 50%, 90%); }
+  .hsl-50-100 { background-color: hsl($hue, 50%, 100%); }
+  .hsl-60-0   { background-color: hsl($hue, 60%, 0%); }
+  .hsl-60-10  { background-color: hsl($hue, 60%, 10%); }
+  .hsl-60-20  { background-color: hsl($hue, 60%, 20%); }
+  .hsl-60-30  { background-color: hsl($hue, 60%, 30%); }
+  .hsl-60-40  { background-color: hsl($hue, 60%, 40%); }
+  .hsl-60-50  { background-color: hsl($hue, 60%, 50%); }
+  .hsl-60-60  { background-color: hsl($hue, 60%, 60%); }
+  .hsl-60-70  { background-color: hsl($hue, 60%, 70%); }
+  .hsl-60-80  { background-color: hsl($hue, 60%, 80%); }
+  .hsl-60-90  { background-color: hsl($hue, 60%, 90%); }
+  .hsl-60-100 { background-color: hsl($hue, 60%, 100%); }
+  .hsl-70-0   { background-color: hsl($hue, 70%, 0%); }
+  .hsl-70-10  { background-color: hsl($hue, 70%, 10%); }
+  .hsl-70-20  { background-color: hsl($hue, 70%, 20%); }
+  .hsl-70-30  { background-color: hsl($hue, 70%, 30%); }
+  .hsl-70-40  { background-color: hsl($hue, 70%, 40%); }
+  .hsl-70-50  { background-color: hsl($hue, 70%, 50%); }
+  .hsl-70-60  { background-color: hsl($hue, 70%, 60%); }
+  .hsl-70-70  { background-color: hsl($hue, 70%, 70%); }
+  .hsl-70-80  { background-color: hsl($hue, 70%, 80%); }
+  .hsl-70-90  { background-color: hsl($hue, 70%, 90%); }
+  .hsl-70-100 { background-color: hsl($hue, 70%, 100%); }
+  .hsl-80-0   { background-color: hsl($hue, 80%, 0%); }
+  .hsl-80-10  { background-color: hsl($hue, 80%, 10%); }
+  .hsl-80-20  { background-color: hsl($hue, 80%, 20%); }
+  .hsl-80-30  { background-color: hsl($hue, 80%, 30%); }
+  .hsl-80-40  { background-color: hsl($hue, 80%, 40%); }
+  .hsl-80-50  { background-color: hsl($hue, 80%, 50%); }
+  .hsl-80-60  { background-color: hsl($hue, 80%, 60%); }
+  .hsl-80-70  { background-color: hsl($hue, 80%, 70%); }
+  .hsl-80-80  { background-color: hsl($hue, 80%, 80%); }
+  .hsl-80-90  { background-color: hsl($hue, 80%, 90%); }
+  .hsl-80-100 { background-color: hsl($hue, 80%, 100%); }
+  .hsl-90-0   { background-color: hsl($hue, 90%, 0%); }
+  .hsl-90-10  { background-color: hsl($hue, 90%, 10%); }
+  .hsl-90-20  { background-color: hsl($hue, 90%, 20%); }
+  .hsl-90-30  { background-color: hsl($hue, 90%, 30%); }
+  .hsl-90-40  { background-color: hsl($hue, 90%, 40%); }
+  .hsl-90-50  { background-color: hsl($hue, 90%, 50%); }
+  .hsl-90-60  { background-color: hsl($hue, 90%, 60%); }
+  .hsl-90-70  { background-color: hsl($hue, 90%, 70%); }
+  .hsl-90-80  { background-color: hsl($hue, 90%, 80%); }
+  .hsl-90-90  { background-color: hsl($hue, 90%, 90%); }
+  .hsl-90-100 { background-color: hsl($hue, 90%, 100%); }
+  .hsl-100-0   { background-color: hsl($hue, 100%, 0%); }
+  .hsl-100-10  { background-color: hsl($hue, 100%, 10%); }
+  .hsl-100-20  { background-color: hsl($hue, 100%, 20%); }
+  .hsl-100-30  { background-color: hsl($hue, 100%, 30%); }
+  .hsl-100-40  { background-color: hsl($hue, 100%, 40%); }
+  .hsl-100-50  { background-color: hsl($hue, 100%, 50%); }
+  .hsl-100-60  { background-color: hsl($hue, 100%, 60%); }
+  .hsl-100-70  { background-color: hsl($hue, 100%, 70%); }
+  .hsl-100-80  { background-color: hsl($hue, 100%, 80%); }
+  .hsl-100-90  { background-color: hsl($hue, 100%, 90%); }
+  .hsl-100-100 { background-color: hsl($hue, 100%, 100%); }
+}
+
+.hslDemo-color1 { @mixin hslDemo 0; }
+.hslDemo-color2 { @mixin hslDemo 30; }
+.hslDemo-color3 { @mixin hslDemo 60; }
+.hslDemo-color4 { @mixin hslDemo 90; }
+.hslDemo-color5 { @mixin hslDemo 120; }
+.hslDemo-color6 { @mixin hslDemo 150; }
+.hslDemo-color7 { @mixin hslDemo 180; }
+.hslDemo-color8 { @mixin hslDemo 210; }
+.hslDemo-color9 { @mixin hslDemo 240; }
+.hslDemo-color10 { @mixin hslDemo 270; }
+.hslDemo-color11 { @mixin hslDemo 300; }
+.hslDemo-color12 { @mixin hslDemo 330; }
+
+@define-mixin alphaTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .minus1 { background-color: color($color alpha(-0.1)); }
+  .minus2 { background-color: color($color alpha(-0.2)); }
+  .minus3 { background-color: color($color alpha(-0.3)); }
+  .minus4 { background-color: color($color alpha(-0.4)); }
+  .minus5 { background-color: color($color alpha(-0.5)); }
+  .minus6 { background-color: color($color alpha(-0.6)); }
+  .minus7 { background-color: color($color alpha(-0.7)); }
+  .minus8 { background-color: color($color alpha(-0.8)); }
+  .minus9 { background-color: color($color alpha(-0.9)); }
+  .minus10 { background-color: color($color alpha(-1)); }
+}
+.alphaTest-wrap{
+  background: url(bg.png) no-repeat;
+  padding: 30px;
+}
+.alphaTest-color1 { @mixin alphaTest rgb(205, 72, 85); }
+.alphaTest-color2 { @mixin alphaTest rgb(102, 137, 201); }
+.alphaTest-color3 { @mixin alphaTest rgb(58, 172, 117); }
+.alphaTest-color4 { @mixin alphaTest rgb(205, 163, 72); }
+
+@define-mixin hueTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 50px;
+   height: 50px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .boxLabel {
+    font-size: .4em;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .deg30 { background-color: color($color hue(+30deg)); }
+  .deg60 { background-color: color($color hue(+60deg)); }
+  .deg90 { background-color: color($color hue(+90deg)); }
+  .deg120 { background-color: color($color hue(+120deg)); }
+  .deg150 { background-color: color($color hue(+150deg)); }
+  .deg180 { background-color: color($color hue(+180deg)); }
+  .deg210 { background-color: color($color hue(+210deg)); }
+  .deg240 { background-color: color($color hue(+240deg)); }
+  .deg270 { background-color: color($color hue(+270deg)); }
+  .deg300 { background-color: color($color hue(+300deg)); }
+  .deg330 { background-color: color($color hue(+330deg)); }
+  .deg360 { background-color: color($color hue(+360deg)); }
+}
+.hueTest-color1 { @mixin hueTest rgb(205, 72, 85); }
+.hueTest-color2 { @mixin hueTest rgb(102, 137, 201); }
+.hueTest-color3 { @mixin hueTest rgb(58, 172, 117); }
+.hueTest-color4 { @mixin hueTest rgb(205, 163, 72); }
+
+@define-mixin redTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color red(+100%)); }
+  .per90 { background-color: color($color red(+90%)); }
+  .per80 { background-color: color($color red(+80%)); }
+  .per70 { background-color: color($color red(+70%)); }
+  .per60 { background-color: color($color red(+60%)); }
+  .per50 { background-color: color($color red(+50%)); }
+  .per40 { background-color: color($color red(+40%)); }
+  .per30 { background-color: color($color red(+30%)); }
+  .per20 { background-color: color($color red(+20%)); }
+  .per10 { background-color: color($color red(+10%)); }
+  .per0 { background-color: color($color red(+0%)); }
+  .perMinus100 { background-color: color($color red(-100%)); }
+  .perMinus90 { background-color: color($color red(-90%)); }
+  .perMinus80 { background-color: color($color red(-80%)); }
+  .perMinus70 { background-color: color($color red(-70%)); }
+  .perMinus60 { background-color: color($color red(-60%)); }
+  .perMinus50 { background-color: color($color red(-50%)); }
+  .perMinus40 { background-color: color($color red(-40%)); }
+  .perMinus30 { background-color: color($color red(-30%)); }
+  .perMinus20 { background-color: color($color red(-20%)); }
+  .perMinus10 { background-color: color($color red(-10%)); }
+}
+.redTest-color1 { @mixin redTest rgb(205, 72, 85); }
+.redTest-color2 { @mixin redTest rgb(102, 137, 201); }
+.redTest-color3 { @mixin redTest rgb(58, 172, 117); }
+.redTest-color4 { @mixin redTest rgb(205, 163, 72); }
+
+@define-mixin greenTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color green(+100%)); }
+  .per90 { background-color: color($color green(+90%)); }
+  .per80 { background-color: color($color green(+80%)); }
+  .per70 { background-color: color($color green(+70%)); }
+  .per60 { background-color: color($color green(+60%)); }
+  .per50 { background-color: color($color green(+50%)); }
+  .per40 { background-color: color($color green(+40%)); }
+  .per30 { background-color: color($color green(+30%)); }
+  .per20 { background-color: color($color green(+20%)); }
+  .per10 { background-color: color($color green(+10%)); }
+  .per0 { background-color: color($color green(+0%)); }
+  .perMinus100 { background-color: color($color green(-100%)); }
+  .perMinus90 { background-color: color($color green(-90%)); }
+  .perMinus80 { background-color: color($color green(-80%)); }
+  .perMinus70 { background-color: color($color green(-70%)); }
+  .perMinus60 { background-color: color($color green(-60%)); }
+  .perMinus50 { background-color: color($color green(-50%)); }
+  .perMinus40 { background-color: color($color green(-40%)); }
+  .perMinus30 { background-color: color($color green(-30%)); }
+  .perMinus20 { background-color: color($color green(-20%)); }
+  .perMinus10 { background-color: color($color green(-10%)); }
+}
+.greenTest-color1 { @mixin greenTest rgb(205, 72, 85); }
+.greenTest-color2 { @mixin greenTest rgb(102, 137, 201); }
+.greenTest-color3 { @mixin greenTest rgb(58, 172, 117); }
+.greenTest-color4 { @mixin greenTest rgb(205, 163, 72); }
+
+@define-mixin blueTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color blue(+100%)); }
+  .per90 { background-color: color($color blue(+90%)); }
+  .per80 { background-color: color($color blue(+80%)); }
+  .per70 { background-color: color($color blue(+70%)); }
+  .per60 { background-color: color($color blue(+60%)); }
+  .per50 { background-color: color($color blue(+50%)); }
+  .per40 { background-color: color($color blue(+40%)); }
+  .per30 { background-color: color($color blue(+30%)); }
+  .per20 { background-color: color($color blue(+20%)); }
+  .per10 { background-color: color($color blue(+10%)); }
+  .per0 { background-color: color($color blue(+0%)); }
+  .perMinus100 { background-color: color($color blue(-100%)); }
+  .perMinus90 { background-color: color($color blue(-90%)); }
+  .perMinus80 { background-color: color($color blue(-80%)); }
+  .perMinus70 { background-color: color($color blue(-70%)); }
+  .perMinus60 { background-color: color($color blue(-60%)); }
+  .perMinus50 { background-color: color($color blue(-50%)); }
+  .perMinus40 { background-color: color($color blue(-40%)); }
+  .perMinus30 { background-color: color($color blue(-30%)); }
+  .perMinus20 { background-color: color($color blue(-20%)); }
+  .perMinus10 { background-color: color($color blue(-10%)); }
+}
+.blueTest-color1 { @mixin blueTest rgb(205, 72, 85); }
+.blueTest-color2 { @mixin blueTest rgb(102, 137, 201); }
+.blueTest-color3 { @mixin blueTest rgb(58, 172, 117); }
+.blueTest-color4 { @mixin blueTest rgb(205, 163, 72); }
+
+@define-mixin saturationTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color saturation(+100%)); }
+  .per90 { background-color: color($color saturation(+90%)); }
+  .per80 { background-color: color($color saturation(+80%)); }
+  .per70 { background-color: color($color saturation(+70%)); }
+  .per60 { background-color: color($color saturation(+60%)); }
+  .per50 { background-color: color($color saturation(+50%)); }
+  .per40 { background-color: color($color saturation(+40%)); }
+  .per30 { background-color: color($color saturation(+30%)); }
+  .per20 { background-color: color($color saturation(+20%)); }
+  .per10 { background-color: color($color saturation(+10%)); }
+  .per0 { background-color: color($color saturation(+0%)); }
+  .perMinus100 { background-color: color($color saturation(-100%)); }
+  .perMinus90 { background-color: color($color saturation(-90%)); }
+  .perMinus80 { background-color: color($color saturation(-80%)); }
+  .perMinus70 { background-color: color($color saturation(-70%)); }
+  .perMinus60 { background-color: color($color saturation(-60%)); }
+  .perMinus50 { background-color: color($color saturation(-50%)); }
+  .perMinus40 { background-color: color($color saturation(-40%)); }
+  .perMinus30 { background-color: color($color saturation(-30%)); }
+  .perMinus20 { background-color: color($color saturation(-20%)); }
+  .perMinus10 { background-color: color($color saturation(-10%)); }
+}
+.saturationTest-color1 { @mixin saturationTest rgb(205, 72, 85); }
+.saturationTest-color2 { @mixin saturationTest rgb(102, 137, 201); }
+.saturationTest-color3 { @mixin saturationTest rgb(58, 172, 117); }
+.saturationTest-color4 { @mixin saturationTest rgb(205, 163, 72); }
+
+.saturationTest-color5 { @mixin saturationTest rgb(87, 142, 255); }
+.saturationTest-color6 { @mixin saturationTest rgb(127, 156, 215); }
+.saturationTest-color7 { @mixin saturationTest rgb(149, 163, 192); }
+.saturationTest-color8 { @mixin saturationTest rgb(163, 168, 178); }
+
+@define-mixin lightnessTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color lightness(+100%)); }
+  .per90 { background-color: color($color lightness(+90%)); }
+  .per80 { background-color: color($color lightness(+80%)); }
+  .per70 { background-color: color($color lightness(+70%)); }
+  .per60 { background-color: color($color lightness(+60%)); }
+  .per50 { background-color: color($color lightness(+50%)); }
+  .per40 { background-color: color($color lightness(+40%)); }
+  .per30 { background-color: color($color lightness(+30%)); }
+  .per20 { background-color: color($color lightness(+20%)); }
+  .per10 { background-color: color($color lightness(+10%)); }
+  .per0 { background-color: color($color lightness(+0%)); }
+  .perMinus100 { background-color: color($color lightness(-100%)); }
+  .perMinus90 { background-color: color($color lightness(-90%)); }
+  .perMinus80 { background-color: color($color lightness(-80%)); }
+  .perMinus70 { background-color: color($color lightness(-70%)); }
+  .perMinus60 { background-color: color($color lightness(-60%)); }
+  .perMinus50 { background-color: color($color lightness(-50%)); }
+  .perMinus40 { background-color: color($color lightness(-40%)); }
+  .perMinus30 { background-color: color($color lightness(-30%)); }
+  .perMinus20 { background-color: color($color lightness(-20%)); }
+  .perMinus10 { background-color: color($color lightness(-10%)); }
+}
+.lightnessTest-color1 { @mixin lightnessTest rgb(205, 72, 85); }
+.lightnessTest-color2 { @mixin lightnessTest rgb(102, 137, 201); }
+.lightnessTest-color3 { @mixin lightnessTest rgb(58, 172, 117); }
+.lightnessTest-color4 { @mixin lightnessTest rgb(205, 163, 72); }
+
+
+@define-mixin whitenessTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color whiteness(+100%)); }
+  .per90 { background-color: color($color whiteness(+90%)); }
+  .per80 { background-color: color($color whiteness(+80%)); }
+  .per70 { background-color: color($color whiteness(+70%)); }
+  .per60 { background-color: color($color whiteness(+60%)); }
+  .per50 { background-color: color($color whiteness(+50%)); }
+  .per40 { background-color: color($color whiteness(+40%)); }
+  .per30 { background-color: color($color whiteness(+30%)); }
+  .per20 { background-color: color($color whiteness(+20%)); }
+  .per10 { background-color: color($color whiteness(+10%)); }
+  .per0 { background-color: color($color whiteness(+0%)); }
+  .perMinus100 { background-color: color($color whiteness(-100%)); }
+  .perMinus90 { background-color: color($color whiteness(-90%)); }
+  .perMinus80 { background-color: color($color whiteness(-80%)); }
+  .perMinus70 { background-color: color($color whiteness(-70%)); }
+  .perMinus60 { background-color: color($color whiteness(-60%)); }
+  .perMinus50 { background-color: color($color whiteness(-50%)); }
+  .perMinus40 { background-color: color($color whiteness(-40%)); }
+  .perMinus30 { background-color: color($color whiteness(-30%)); }
+  .perMinus20 { background-color: color($color whiteness(-20%)); }
+  .perMinus10 { background-color: color($color whiteness(-10%)); }
+}
+.whitenessTest-color1 { @mixin whitenessTest rgb(205, 72, 85); }
+.whitenessTest-color2 { @mixin whitenessTest rgb(255, 200, 200); }
+.whitenessTest-color3 { @mixin whitenessTest rgb(102, 137, 201); }
+.whitenessTest-color4 { @mixin whitenessTest rgb(30, 40, 100); }
+
+@define-mixin blacknessTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color blackness(+100%)); }
+  .per90 { background-color: color($color blackness(+90%)); }
+  .per80 { background-color: color($color blackness(+80%)); }
+  .per70 { background-color: color($color blackness(+70%)); }
+  .per60 { background-color: color($color blackness(+60%)); }
+  .per50 { background-color: color($color blackness(+50%)); }
+  .per40 { background-color: color($color blackness(+40%)); }
+  .per30 { background-color: color($color blackness(+30%)); }
+  .per20 { background-color: color($color blackness(+20%)); }
+  .per10 { background-color: color($color blackness(+10%)); }
+  .per0 { background-color: color($color blackness(+0%)); }
+  .perMinus100 { background-color: color($color blackness(-100%)); }
+  .perMinus90 { background-color: color($color blackness(-90%)); }
+  .perMinus80 { background-color: color($color blackness(-80%)); }
+  .perMinus70 { background-color: color($color blackness(-70%)); }
+  .perMinus60 { background-color: color($color blackness(-60%)); }
+  .perMinus50 { background-color: color($color blackness(-50%)); }
+  .perMinus40 { background-color: color($color blackness(-40%)); }
+  .perMinus30 { background-color: color($color blackness(-30%)); }
+  .perMinus20 { background-color: color($color blackness(-20%)); }
+  .perMinus10 { background-color: color($color blackness(-10%)); }
+}
+.blacknessTest-color1 { @mixin blacknessTest rgb(205, 72, 85); }
+.blacknessTest-color2 { @mixin blacknessTest rgb(102, 137, 201); }
+.blacknessTest-color3 { @mixin blacknessTest rgb(58, 172, 117); }
+.blacknessTest-color4 { @mixin blacknessTest rgb(205, 163, 72); }
+
+@define-mixin tintTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color tint(100%)); }
+  .per90 { background-color: color($color tint(90%)); }
+  .per80 { background-color: color($color tint(80%)); }
+  .per70 { background-color: color($color tint(70%)); }
+  .per60 { background-color: color($color tint(60%)); }
+  .per50 { background-color: color($color tint(50%)); }
+  .per40 { background-color: color($color tint(40%)); }
+  .per30 { background-color: color($color tint(30%)); }
+  .per20 { background-color: color($color tint(20%)); }
+  .per10 { background-color: color($color tint(10%)); }
+  .per0 { background-color: color($color tint(0%)); }
+}
+.tintTest-color1 { @mixin tintTest rgb(205, 72, 85); }
+.tintTest-color2 { @mixin tintTest rgb(102, 137, 201); }
+.tintTest-color3 { @mixin tintTest rgb(58, 172, 117); }
+.tintTest-color4 { @mixin tintTest rgb(205, 163, 72); }
+
+@define-mixin shadeTest $color {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .base {
+    background-color: $color;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color shade(100%)); }
+  .per90 { background-color: color($color shade(90%)); }
+  .per80 { background-color: color($color shade(80%)); }
+  .per70 { background-color: color($color shade(70%)); }
+  .per60 { background-color: color($color shade(60%)); }
+  .per50 { background-color: color($color shade(50%)); }
+  .per40 { background-color: color($color shade(40%)); }
+  .per30 { background-color: color($color shade(30%)); }
+  .per20 { background-color: color($color shade(20%)); }
+  .per10 { background-color: color($color shade(10%)); }
+  .per0 { background-color: color($color shade(0%)); }
+}
+.shadeTest-color1 { @mixin shadeTest rgb(205, 72, 85); }
+.shadeTest-color2 { @mixin shadeTest rgb(102, 137, 201); }
+.shadeTest-color3 { @mixin shadeTest rgb(58, 172, 117); }
+.shadeTest-color4 { @mixin shadeTest rgb(205, 163, 72); }
+
+@define-mixin blendTest $color1, $color2 {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+   display: inline-block;
+   width: 35px;
+   height: 35px;
+   position: relative;
+   vertical-align: top;
+   border: 1px solid #000;
+  }
+  .color1 {
+    background-color: $color1;
+  }
+  .color2 {
+    background-color: $color2;
+    margin-right: 15px;
+  }
+  .per100 { background-color: color($color1 blend($color2 100%)); }
+  .per90 { background-color: color($color1 blend($color2 90%)); }
+  .per80 { background-color: color($color1 blend($color2 80%)); }
+  .per70 { background-color: color($color1 blend($color2 70%)); }
+  .per60 { background-color: color($color1 blend($color2 60%)); }
+  .per50 { background-color: color($color1 blend($color2 50%)); }
+  .per40 { background-color: color($color1 blend($color2 40%)); }
+  .per30 { background-color: color($color1 blend($color2 30%)); }
+  .per20 { background-color: color($color1 blend($color2 20%)); }
+  .per10 { background-color: color($color1 blend($color2 10%)); }
+  .per0 { background-color: color($color1 blend($color2 0%)); }
+}
+.blendTest-color1 { @mixin blendTest rgb(205, 72, 85), #00ffff;}
+.blendTest-color2 { @mixin blendTest rgb(102, 137, 201), #ff0000; }
+.blendTest-color3 { @mixin blendTest rgb(58, 172, 117), #0000ff; }
+.blendTest-color4 { @mixin blendTest rgb(205, 163, 72), #ffffff; }
+.blendTest-color4 { @mixin blendTest rgb(205, 163, 72), #000000; }
+
+
+@define-mixin contrastTest $bgColor {
+  padding: 20px 0 0;
+  margin: 0 0 10px;
+  > div {
+    position: relative;
+    vertical-align: top;
+    background-color: $bgColor;
+    display: block;
+    padding: 4px 12px;
+  }
+  .per100 { color: color($bgColor contrast(100%)); }
+  .per90 { color: color($bgColor contrast(90%)); }
+  .per80 { color: color($bgColor contrast(80%)); }
+  .per70 { color: color($bgColor contrast(70%)); }
+  .per60 { color: color($bgColor contrast(60%)); }
+  .per50 { color: color($bgColor contrast(50%)); }
+  .per40 { color: color($bgColor contrast(40%)); }
+  .per30 { color: color($bgColor contrast(30%)); }
+  .per20 { color: color($bgColor contrast(20%)); }
+  .per10 { color: color($bgColor contrast(10%)); }
+  .per0 { color: color($bgColor contrast(0%)); }
+
+  .boxLabel {
+    font-size: 1em;
+    line-height: inherit;
+    left: auto;
+    right: auto;
+    width: auto;
+    display: inline;
+    position: static;
+    margin: 0 10px 0 0;
+    &::after {
+      content: ":";
+      display: inline;
+    }
+  }
+}
+.contrastTest-color1 { @mixin contrastTest rgb(40, 40, 40); }
+.contrastTest-color2 { @mixin contrastTest rgb(230, 230, 230); }
+.contrastTest-color3 { @mixin contrastTest rgb(200, 40, 40); }
+
+

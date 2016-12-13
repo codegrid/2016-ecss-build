@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=580">
+<link rel="stylesheet" href="styles.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+$(function() {
+
+  (function() {
+    var s = 100; // saturation
+    var l = 100; // lightness
+    var currentCls;
+    var tmpl = '<table>';
+    var header = $('#tmpl-hsl-header').html();
+    tmpl += header;
+    while(0 <= s && 0 <= l ) {
+      if(s === 100) {
+        tmpl += '<tr><th>' + l + '%</th>';
+      }
+      currentCls = 'hsl-' + s + '-' + l;
+      tmpl += '<td class="' + currentCls + '"></td>';
+      s -= 10;
+      if(s < 0) {
+        tmpl += '</tr>';
+        s = 100;
+        l -= 10;
+      }
+    }
+    tmpl += '</table>';
+    $('[data-hsl-demo-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+
+});
+</script>
+<script type="text/x-template" id="tmpl-hsl-header">
+  <tr>
+    <th>L/S</th>
+    <th>100%</th>
+    <th>90%</th>
+    <th>80%</th>
+    <th>70%</th>
+    <th>60%</th>
+    <th>50%</th>
+    <th>40%</th>
+    <th>30%</th>
+    <th>20%</th>
+    <th>10%</th>
+    <th>0%</th>
+  </tr>
+</script>
+</head>
+<body>
+
+<h1>HSL demo</h1>
+
+<div class="hslDemo">
+  <h2>0° Reds</h2>
+  <pre><code>background-color: hsl(0, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color1" data-hsl-demo-container></div>
+  <h2>30° Red-Yellows (Oranges) </h2>
+  <pre><code>background-color: hsl(30, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color2" data-hsl-demo-container></div>
+  <h2>60° Yellows </h2>
+  <pre><code>background-color: hsl(60, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color3" data-hsl-demo-container></div>
+  <h2>90° Yellow-Greens </h2>
+  <pre><code>background-color: hsl(90, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color4" data-hsl-demo-container></div>
+  <h2>120° Greens </h2>
+  <pre><code>background-color: hsl(120, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color5" data-hsl-demo-container></div>
+  <h2>150° Green-Cyans </h2>
+  <pre><code>background-color: hsl(150, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color6" data-hsl-demo-container></div>
+  <h2>180° Cyans </h2>
+  <pre><code>background-color: hsl(180, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color7" data-hsl-demo-container></div>
+  <h2>210° Cyan-Blues </h2>
+  <pre><code>background-color: hsl(210, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color8" data-hsl-demo-container></div>
+  <h2>240° Blues </h2>
+  <pre><code>background-color: hsl(240, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color9" data-hsl-demo-container></div>
+  <h2>270° Blue-Magentas </h2>
+  <pre><code>background-color: hsl(270, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color10" data-hsl-demo-container></div>
+  <h2>300° Magentas </h2>
+  <pre><code>background-color: hsl(300, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color11" data-hsl-demo-container></div>
+  <h2>330° Magenta-Reds </h2>
+  <pre><code>background-color: hsl(330, SATURATION, jk:w);</code></pre>
+  <div class="hslDemo-color12" data-hsl-demo-container></div>
+</div>
+
+</body>
+</html>
