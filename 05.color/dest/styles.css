@@ -9396,7 +9396,7 @@ pre code {
   background-color: hsl(330, 100%, 100%);
 }
 .alphaTest-wrap{
-  background: url(bg.png) no-repeat;
+  background: url(bg.png) 0 0 repeat;
   padding: 30px;
 }
 .alphaTest-color1 { padding: 20px 0 0; margin: 0 0 10px; }
@@ -13014,4 +13014,87 @@ pre code {
   display: inline;
 }
 
+.rgbaExplanation .ex1 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.rgbaExplanation .ex1:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(205, 72, 85);
+}
+
+.rgbaExplanation .ex2 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.rgbaExplanation .ex2:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(205, 72, 85, 0.5);
+}
+
+.hslExplanation .ex1 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.hslExplanation .ex1:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: hsl(354, 57%, 54%);
+}
+
+.hslExplanation .ex2 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.hslExplanation .ex2:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: hsla(354, 57%, 54%, 0.5);
+}
+
+.hwbExplanation .ex1 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.hwbExplanation .ex1:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(204, 71, 85);
+}
+
+.hwbExplanation .ex2 {
+  background: url(bg.png) 0 0 repeat;
+  display: inline-block;
+  padding: 25px;
+}
+
+.hwbExplanation .ex2:after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(204, 71, 85, 0.5);
+}
 

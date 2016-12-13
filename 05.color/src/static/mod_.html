@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=1100">
+<link rel="stylesheet" href="styles.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script>
+$(function() {
+
+  (function() {
+    var tmpl = $('#tmpl-alpha').html();
+    $('[data-alpha-test-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-zero100').html();
+    var selectors = [
+      '[data-whiteness-test-container]',
+      '[data-blackness-test-container]',
+    ].join(',');
+    $(selectors).each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-100ZeroMinus100').html();
+    var selectors = [
+      '[data-red-test-container]',
+      '[data-green-test-container]',
+      '[data-blue-test-container]',
+      '[data-saturation-test-container]',
+      '[data-lightness-test-container]',
+    ].join(',');
+    $(selectors).each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-zero100').html();
+    var selectors = [
+      '[data-tint-test-container]',
+      '[data-shade-test-container]',
+      '[data-contrast-test-container]',
+    ].join(',');
+    $(selectors).each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-hue').html();
+    $('[data-hue-test-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-blend').html();
+    $('[data-blend-test-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+  (function() {
+    var tmpl = $('#tmpl-contrast').html();
+    $('[data-contrast-test-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+
+  $('[data-attach-box-label]').each(function(i, el) {
+    var $el = $(el);
+    var text = $el.attr('data-attach-box-label');
+    var $label = $('<div class="boxLabel">' + text + '</div>');
+    $el.prepend($label);
+  });
+
+  (function() {
+    var w = 0;
+    var b = 0;
+    var currentCls;
+    var tmpl = '<table>';
+    var header = $('#tmpl-hwb-header').html();
+    tmpl += header;
+    while(w <= 100 && b <= 100) {
+      if(b === 0) {
+        tmpl += '<tr><th>' + w + '%</th>';
+      }
+      currentCls = 'hwb-' + w + '-' + b;
+      tmpl += '<td class="' + currentCls + '"></td>';
+      b += 10;
+      if(b > 100) {
+        tmpl += '</tr>';
+        b = 0;
+        w += 10;
+      }
+    }
+    tmpl += '</table>';
+    $('[data-hwb-demo-container]').each(function(i, el) {
+      var $container = $(el);
+      $container.html(tmpl);
+    });
+  }());
+
+
+});
+</script>
+<script type="text/x-template" id="tmpl-hwb-header">
+  <tr>
+    <th>W/B</th>
+    <th>0%</th>
+    <th>10%</th>
+    <th>20%</th>
+    <th>30%</th>
+    <th>40%</th>
+    <th>50%</th>
+    <th>60%</th>
+    <th>70%</th>
+    <th>80%</th>
+    <th>90%</th>
+    <th>100%</th>
+  </tr>
+</script>
+<script type="text/x-template" id="tmpl-100Zero">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="100%" class="per100"></div>
+  <div data-attach-box-label="90%" class="per90"></div>
+  <div data-attach-box-label="80%" class="per80"></div>
+  <div data-attach-box-label="70%" class="per70"></div>
+  <div data-attach-box-label="60%" class="per60"></div>
+  <div data-attach-box-label="50%" class="per50"></div>
+  <div data-attach-box-label="40%" class="per40"></div>
+  <div data-attach-box-label="30%" class="per30"></div>
+  <div data-attach-box-label="20%" class="per20"></div>
+  <div data-attach-box-label="10%" class="per10"></div>
+  <div data-attach-box-label="0%" class="per0"></div>
+</script>
+<script type="text/x-template" id="tmpl-zero100">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="+0%" class="per0"></div>
+  <div data-attach-box-label="+10%" class="per10"></div>
+  <div data-attach-box-label="+20%" class="per20"></div>
+  <div data-attach-box-label="+30%" class="per30"></div>
+  <div data-attach-box-label="+40%" class="per40"></div>
+  <div data-attach-box-label="+50%" class="per50"></div>
+  <div data-attach-box-label="+60%" class="per60"></div>
+  <div data-attach-box-label="+70%" class="per70"></div>
+  <div data-attach-box-label="+80%" class="per80"></div>
+  <div data-attach-box-label="+90%" class="per90"></div>
+  <div data-attach-box-label="+100%" class="per100"></div>
+</script>
+<script type="text/x-template" id="tmpl-100ZeroMinus100">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="+100%" class="per100"></div>
+  <div data-attach-box-label="+90%" class="per90"></div>
+  <div data-attach-box-label="+80%" class="per80"></div>
+  <div data-attach-box-label="+70%" class="per70"></div>
+  <div data-attach-box-label="+60%" class="per60"></div>
+  <div data-attach-box-label="+50%" class="per50"></div>
+  <div data-attach-box-label="+40%" class="per40"></div>
+  <div data-attach-box-label="+30%" class="per30"></div>
+  <div data-attach-box-label="+20%" class="per20"></div>
+  <div data-attach-box-label="+10%" class="per10"></div>
+  <div data-attach-box-label="+0%" class="per0"></div>
+  <div data-attach-box-label="-10%" class="perMinus10"></div>
+  <div data-attach-box-label="-20%" class="perMinus20"></div>
+  <div data-attach-box-label="-30%" class="perMinus30"></div>
+  <div data-attach-box-label="-40%" class="perMinus40"></div>
+  <div data-attach-box-label="-50%" class="perMinus50"></div>
+  <div data-attach-box-label="-60%" class="perMinus60"></div>
+  <div data-attach-box-label="-70%" class="perMinus70"></div>
+  <div data-attach-box-label="-80%" class="perMinus80"></div>
+  <div data-attach-box-label="-90%" class="perMinus90"></div>
+  <div data-attach-box-label="-100%" class="perMinus100"></div>
+</script>
+<script type="text/x-template" id="tmpl-100ZeroMinus100Zero">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="100%" class="per100"></div>
+  <div data-attach-box-label="90%" class="per90"></div>
+  <div data-attach-box-label="80%" class="per80"></div>
+  <div data-attach-box-label="70%" class="per70"></div>
+  <div data-attach-box-label="60%" class="per60"></div>
+  <div data-attach-box-label="50%" class="per50"></div>
+  <div data-attach-box-label="40%" class="per40"></div>
+  <div data-attach-box-label="30%" class="per30"></div>
+  <div data-attach-box-label="20%" class="per20"></div>
+  <div data-attach-box-label="10%" class="per10"></div>
+  <div data-attach-box-label="0%" class="per0"></div>
+  <div data-attach-box-label="-100%" class="perMinus100"></div>
+  <div data-attach-box-label="-90%" class="perMinus90"></div>
+  <div data-attach-box-label="-80%" class="perMinus80"></div>
+  <div data-attach-box-label="-70%" class="perMinus70"></div>
+  <div data-attach-box-label="-60%" class="perMinus60"></div>
+  <div data-attach-box-label="-50%" class="perMinus50"></div>
+  <div data-attach-box-label="-40%" class="perMinus40"></div>
+  <div data-attach-box-label="-30%" class="perMinus30"></div>
+  <div data-attach-box-label="-20%" class="perMinus20"></div>
+  <div data-attach-box-label="-10%" class="perMinus10"></div>
+</script>
+<script type="text/x-template" id="tmpl-zero100">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="0%" class="per0"></div>
+  <div data-attach-box-label="10%" class="per10"></div>
+  <div data-attach-box-label="20%" class="per20"></div>
+  <div data-attach-box-label="30%" class="per30"></div>
+  <div data-attach-box-label="40%" class="per40"></div>
+  <div data-attach-box-label="50%" class="per50"></div>
+  <div data-attach-box-label="60%" class="per60"></div>
+  <div data-attach-box-label="70%" class="per70"></div>
+  <div data-attach-box-label="80%" class="per80"></div>
+  <div data-attach-box-label="90%" class="per90"></div>
+  <div data-attach-box-label="100%" class="per100"></div>
+</script>
+<script type="text/x-template" id="tmpl-alpha">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="-0.1" class="minus1"></div>
+  <div data-attach-box-label="-0.2" class="minus2"></div>
+  <div data-attach-box-label="-0.3" class="minus3"></div>
+  <div data-attach-box-label="-0.4" class="minus4"></div>
+  <div data-attach-box-label="-0.5" class="minus5"></div>
+  <div data-attach-box-label="-0.6" class="minus6"></div>
+  <div data-attach-box-label="-0.7" class="minus7"></div>
+  <div data-attach-box-label="-0.8" class="minus8"></div>
+  <div data-attach-box-label="-0.9" class="minus9"></div>
+  <div data-attach-box-label="-1" class="minus10"></div>
+</script>
+<script type="text/x-template" id="tmpl-hue">
+  <div data-attach-box-label="base" class="base"></div>
+  <div data-attach-box-label="+30deg" class="deg30"></div>
+  <div data-attach-box-label="+60deg" class="deg60"></div>
+  <div data-attach-box-label="+90deg" class="deg90"></div>
+  <div data-attach-box-label="+120deg" class="deg120"></div>
+  <div data-attach-box-label="+150deg" class="deg150"></div>
+  <div data-attach-box-label="+180deg" class="deg180"></div>
+  <div data-attach-box-label="+210deg" class="deg210"></div>
+  <div data-attach-box-label="+240deg" class="deg240"></div>
+  <div data-attach-box-label="+270deg" class="deg270"></div>
+  <div data-attach-box-label="+300deg" class="deg300"></div>
+  <div data-attach-box-label="+330deg" class="deg330"></div>
+  <div data-attach-box-label="+360deg" class="deg360"></div>
+</script>
+<script type="text/x-template" id="tmpl-blend">
+  <div data-attach-box-label="color1" class="color1"></div>
+  <div data-attach-box-label="color2" class="color2"></div>
+  <div data-attach-box-label="0%" class="per0"></div>
+  <div data-attach-box-label="10%" class="per10"></div>
+  <div data-attach-box-label="20%" class="per20"></div>
+  <div data-attach-box-label="30%" class="per30"></div>
+  <div data-attach-box-label="40%" class="per40"></div>
+  <div data-attach-box-label="50%" class="per50"></div>
+  <div data-attach-box-label="60%" class="per60"></div>
+  <div data-attach-box-label="70%" class="per70"></div>
+  <div data-attach-box-label="80%" class="per80"></div>
+  <div data-attach-box-label="90%" class="per90"></div>
+  <div data-attach-box-label="100%" class="per100"></div>
+</script>
+<script type="text/x-template" id="tmpl-contrast">
+  <div data-attach-box-label="0%" class="per0">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="10%" class="per10">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="20%" class="per20">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="30%" class="per30">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="40%" class="per40">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="50%" class="per50">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="60%" class="per60">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="70%" class="per70">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="80%" class="per80">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="90%" class="per90">The quick brown fox jumps over the lazy dog. </div>
+  <div data-attach-box-label="100%" class="per100">The quick brown fox jumps over the lazy dog. </div>
+</script>
+</head>
+<body>
+
+<h1>color-mod(): blend, tint, shade</h1>
+
+<h2>blend</h2>
+
+<pre><code>background-color: color(#123456, blend(#654321, PERCENTAGE));</code></pre>
+
+<div class="blendTest-color1" data-blend-test-container></div>
+<div class="blendTest-color2" data-blend-test-container></div>
+<div class="blendTest-color3" data-blend-test-container></div>
+<div class="blendTest-color4" data-blend-test-container></div>
+
+<h2>tint</h2>
+
+<pre><code>background-color: color(#123456, tint(VALUE));</code></pre>
+
+<div class="tintTest-color1" data-tint-test-container></div>
+<div class="tintTest-color2" data-tint-test-container></div>
+<div class="tintTest-color3" data-tint-test-container></div>
+<div class="tintTest-color4" data-tint-test-container></div>
+
+<h2>shade</h2>
+
+<pre><code>background-color: color(#123456, shade(VALUE));</code></pre>
+
+<div class="shadeTest-color1" data-shade-test-container></div>
+<div class="shadeTest-color2" data-shade-test-container></div>
+<div class="shadeTest-color3" data-shade-test-container></div>
+<div class="shadeTest-color4" data-shade-test-container></div>
+
+</body>
+</html>
