@@ -1,0 +1,26 @@
+.top {
+  &-Module1 {
+    font-family: monospace;
+    font-size: 1.3em;
+    padding: 20px;
+    margin: 10px;
+    background-image: url(transparent.png);
+    &_Group {
+      overflow: hidden;
+    }
+    &_Item {
+      width: 250px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      float: left;
+      margin: 10px;
+      &-red { background-color: $red1; }
+      &-blue { background-color: $blue1; }
+      &-orange { background-color: $orange1; }
+      &-redAlpha { background-color: color($red1 alpha(- 0.4)); }
+      &-blueTint { background-color: color($blue1 tint(50%)); }
+      &-orangeShade { background-color: color($orange1 shade(50%)); }
+    }
+  }
+}

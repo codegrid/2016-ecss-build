@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+/* resets */
+
+body {
+  padding: 30px;
+  margin: 0;
+  font-family: Helvetica;
+  color: #000;
+  font-size: 16px;
+  background: url(transparent.png);
+}
+table {
+  table-layout: fixed;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  border-top: 1px solid #000;
+  padding-top: 1em;
+  margin-top: 2.5em;
+  padding-bottom: 0.5em;
+}
+
+/* palette */
+
+.sg-Palette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-Palette_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-Palette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-Palette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* alpha */
+
+.sg-AlphaPalette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-AlphaPalette_ColorContainer {
+  float: left;
+  padding: 0 2px 4px 0;
+}
+.sg-AlphaPalette_Item {
+  width: 300px;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.sg-AlphaPalette_Item-original {
+  border: 2px dashed #000;
+}
+.sg-AlphaPalette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-AlphaPalette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* tint shade palette */
+
+.sg-TSPalette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-TSPalette_ColorContainer {
+  float: left;
+  padding: 0 2px 4px 0;
+}
+.sg-TSPalette_Item {
+  width: 300px;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.sg-TSPalette_Item-original {
+  border: 2px dashed #000;
+}
+.sg-TSPalette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-TSPalette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* text variations */
+
+.sg-TextVariationList {
+}
+.sg-TextVariationList_Th {
+  padding: 0 20px 5px 0;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.sg-TextVariationList_Td {
+  width: 100%;
+  vertical-align: middle;
+  text-align: left;
+}
+.sg-TextVariationList_List {
+}
+.sg-TextVariationList_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-TextVariationList_ItemLabel {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-TextVariationList_ItemColorName {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* alert variations */
+
+.sg-AlertVariationList {
+}
+.sg-AlertVariationList_Th {
+  padding: 0 20px 5px 0;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.sg-AlertVariationList_Td {
+  width: 100%;
+  vertical-align: middle;
+  text-align: left;
+}
+.sg-AlertVariationList_List {
+}
+.sg-AlertVariationList_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-AlertVariationList_ItemLabel {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-AlertVariationList_ItemColorName {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+</style>
+<script>
+(function() {
+  /* デバッグ用 dump */
+  var array = {{{colorArray_str}}};
+  var object = {{{colorObject_str}}};
+  console.log('===== colorArray =====');
+  console.log(array);
+  console.log('===== colorObject =====');
+  console.log(object);
+}());
+</script>
+</head>
+<body>
+
+<h1>カラーガイド</h1>
+
+<h2>基本パレット</h2>
+
+<ul class="sg-Palette">
+  {{#colorArray}}
+    <li class="sg-Palette_Item" style="background-color:{{{original.value}}};color:{{{original.labelColor}}}">
+      <span class="sg-Palette_Label">{{original.label}}</span>
+      <span class="sg-Palette_ColorCode">{{original.value}}</span>
+    </li>
+  {{/colorArray}}
+</ul>
+
+<h2>alpha バリエーション</h2>
+
+<div class="sg-AlphaPalette">
+  {{#colorArray}}
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:{{{original.value}}};color:{{{original.labelColor}}}">
+        <span class="sg-AlphaPalette_Label">{{original.label}}</span>
+        <span class="sg-AlphaPalette_ColorCode">{{original.value}}</span>
+      </li>
+      {{#alphas}}
+        <li class="sg-AlphaPalette_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+          <span class="sg-AlphaPalette_Label">{{label}}</span>
+        </li>
+      {{/alphas}}
+    </ul>
+  {{/colorArray}}
+</div>
+
+<h2>tint &amp; shade バリエーション</h2>
+
+<div class="sg-TSPalette">
+  {{#colorArray}}
+    <ul class="sg-TSPalette_ColorContainer">
+      {{#tints}}
+        <li class="sg-TSPalette_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+          <span class="sg-TSPalette_Label">{{label}}</span>
+        </li>
+      {{/tints}}
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:{{{original.value}}};color:{{{original.labelColor}}}">
+        <span class="sg-TSPalette_Label">{{original.label}}</span>
+        <span class="sg-TSPalette_ColorCode">{{original.value}}</span>
+      </li>
+      {{#shades}}
+        <li class="sg-TSPalette_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+          <span class="sg-TSPalette_Label">{{label}}</span>
+        </li>
+      {{/shades}}
+    </ul>
+  {{/colorArray}}
+</div>
+
+<h2>テキストカラー</h2>
+
+<table class="sg-TextVariationList">
+  <tr>
+    <th class="sg-TextVariationList_Th">ベースのテキストカラー</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+        {{#colorObject.$black1.original}}
+          <li class="sg-TextVariationList_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+            <span class="sg-TextVariationList_ItemLabel">{{label}}</span>
+            <span class="sg-TextVariationList_ItemColorName">{{value}}</span>
+          </li>
+        {{/colorObject.$black1.original}}
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-TextVariationList_Th">見出し</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+        {{#colorObject.$black2.original}}
+          <li class="sg-TextVariationList_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+            <span class="sg-TextVariationList_ItemLabel">{{label}}</span>
+            <span class="sg-TextVariationList_ItemColorName">{{value}}</span>
+          </li>
+        {{/colorObject.$black2.original}}
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-TextVariationList_Th">補足テキスト</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+        {{#colorObject.$black3.original}}
+          <li class="sg-TextVariationList_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+            <span class="sg-TextVariationList_ItemLabel">{{label}}</span>
+            <span class="sg-TextVariationList_ItemColorName">{{value}}</span>
+          </li>
+        {{/colorObject.$black3.original}}
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<h2>警告色</h2>
+
+<table class="sg-AlertVariationList">
+  <tr>
+    <th class="sg-AlertVariationList_Th">重要な警告</th>
+    <td class="sg-AlertVariationList_Td">
+      <ul class="sg-AlertVariationList_List">
+        {{#colorObject.$red1.original}}
+          <li class="sg-AlertVariationList_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+            <span class="sg-AlertVariationList_ItemLabel">{{label}}</span>
+            <span class="sg-AlertVariationList_ItemColorName">{{value}}</span>
+          </li>
+        {{/colorObject.$red1.original}}
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-AlertVariationList_Th">警告</th>
+    <td class="sg-AlertVariationList_Td">
+      <ul class="sg-AlertVariationList_List">
+        {{#colorObject.$orange1.original}}
+          <li class="sg-AlertVariationList_Item" style="background-color:{{{value}}};color:{{{labelColor}}}">
+            <span class="sg-AlertVariationList_ItemLabel">{{label}}</span>
+            <span class="sg-AlertVariationList_ItemColorName">{{value}}</span>
+          </li>
+        {{/colorObject.$orange1.original}}
+      </ul>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
