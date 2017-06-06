@@ -23,7 +23,7 @@ const plumber = require("gulp-plumber");
 
 const PATH = {};
 PATH.mixinsOptions =             "./src/css/baseCss/globalMixins.js";
-PATH.colorMap =                  "./src/color/all.js";
+PATH.colorMap =                  "./src/color/colorMap.js";
 PATH.rootCssFile =               "./src/css/styles.css";
 PATH.allCssFiles =               "./src/css/**/*";
 PATH.allStaticFiles =            "./src/static/**/*";

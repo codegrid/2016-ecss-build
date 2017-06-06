@@ -4,7 +4,7 @@ const Values = require("values.js");
 
 /* 色のマッピングファイルへのパス */
 
-const PATH_COLORMAP = "./all.js";
+const PATH_COLORMAP = "./colorMap.js";
 
 /* 色変化のバリエーション定義 */
 
