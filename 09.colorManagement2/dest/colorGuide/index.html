@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+/* resets */
+
+body {
+  padding: 30px;
+  margin: 0;
+  font-family: Helvetica;
+  color: #000;
+  font-size: 16px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEW2trbDw8O/OZrLAAAAE0lEQVR4AWNgYPj/n4oElU1jAADtvT/BfzVwSgAAAABJRU5ErkJggg==);
+}
+table {
+  table-layout: fixed;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  border-top: 1px solid #000;
+  padding-top: 1em;
+  margin-top: 2.5em;
+  padding-bottom: 0.5em;
+}
+
+/* palette */
+
+.sg-Palette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-Palette_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-Palette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-Palette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* alpha */
+
+.sg-AlphaPalette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-AlphaPalette_ColorContainer {
+  float: left;
+  padding: 0 2px 4px 0;
+}
+.sg-AlphaPalette_Item {
+  width: 300px;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.sg-AlphaPalette_Item-original {
+  border: 2px dashed #000;
+}
+.sg-AlphaPalette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-AlphaPalette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* tint shade palette */
+
+.sg-TSPalette {
+  overflow: hidden;
+  font-family: monospace;
+  font-size: 1.2em;
+}
+.sg-TSPalette_ColorContainer {
+  float: left;
+  padding: 0 2px 4px 0;
+}
+.sg-TSPalette_Item {
+  width: 300px;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.sg-TSPalette_Item-original {
+  border: 2px dashed #000;
+}
+.sg-TSPalette_Label {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-TSPalette_ColorCode {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* text variations */
+
+.sg-TextVariationList {
+}
+.sg-TextVariationList_Th {
+  padding: 0 20px 5px 0;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.sg-TextVariationList_Td {
+  width: 100%;
+  vertical-align: middle;
+  text-align: left;
+}
+.sg-TextVariationList_List {
+}
+.sg-TextVariationList_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-TextVariationList_ItemLabel {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-TextVariationList_ItemColorName {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+
+/* alert variations */
+
+.sg-AlertVariationList {
+}
+.sg-AlertVariationList_Th {
+  padding: 0 20px 5px 0;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.sg-AlertVariationList_Td {
+  width: 100%;
+  vertical-align: middle;
+  text-align: left;
+}
+.sg-AlertVariationList_List {
+}
+.sg-AlertVariationList_Item {
+  width: 200px;
+  float: left;
+  height: 80px;
+  font-size: .8em;
+  line-height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.sg-AlertVariationList_ItemLabel {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: middle;
+  padding: 0 0 0 10px;
+}
+.sg-AlertVariationList_ItemColorName {
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+}
+</style>
+<script>
+(function() {
+  /* デバッグ用 dump */
+  var array = [{"original":{"label":"$white1","value":"#FFFFFF","labelColor":"#000000"},"tints":[{"label":"color($white1 tint(70%))","value":"#ffffff","key":"70%","labelColor":"#000000"},{"label":"color($white1 tint(50%))","value":"#ffffff","key":"50%","labelColor":"#000000"},{"label":"color($white1 tint(30%))","value":"#ffffff","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($white1 shade(30%))","value":"#b3b3b3","key":"30%","labelColor":"#000000"},{"label":"color($white1 shade(50%))","value":"#808080","key":"50%","labelColor":"#000000"},{"label":"color($white1 shade(70%))","value":"#4d4d4d","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($white1 alpha(- 0.2))","value":"rgba(255, 255, 255, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($white1 alpha(- 0.4))","value":"rgba(255, 255, 255, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($white1 alpha(- 0.6))","value":"rgba(255, 255, 255, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$black1","value":"#2A2A2A","labelColor":"#ffffff"},"tints":[{"label":"color($black1 tint(70%))","value":"#bfbfbf","key":"70%","labelColor":"#ffffff"},{"label":"color($black1 tint(50%))","value":"#959595","key":"50%","labelColor":"#ffffff"},{"label":"color($black1 tint(30%))","value":"#6a6a6a","key":"30%","labelColor":"#ffffff"}],"shades":[{"label":"color($black1 shade(30%))","value":"#1d1d1d","key":"30%","labelColor":"#ffffff"},{"label":"color($black1 shade(50%))","value":"#151515","key":"50%","labelColor":"#ffffff"},{"label":"color($black1 shade(70%))","value":"#0d0d0d","key":"70%","labelColor":"#ffffff"}],"alphas":[{"label":"color($black1 alpha(- 0.2))","value":"rgba(42, 42, 42, 0.8)","key":"-0.2%","labelColor":"#ffffff"},{"label":"color($black1 alpha(- 0.4))","value":"rgba(42, 42, 42, 0.6)","key":"-0.4%","labelColor":"#ffffff"},{"label":"color($black1 alpha(- 0.6))","value":"rgba(42, 42, 42, 0.4)","key":"-0.6%","labelColor":"#ffffff"}]},{"original":{"label":"$black2","value":"#000000","labelColor":"#ffffff"},"tints":[{"label":"color($black2 tint(70%))","value":"#b3b3b3","key":"70%","labelColor":"#ffffff"},{"label":"color($black2 tint(50%))","value":"#808080","key":"50%","labelColor":"#ffffff"},{"label":"color($black2 tint(30%))","value":"#4d4d4d","key":"30%","labelColor":"#ffffff"}],"shades":[{"label":"color($black2 shade(30%))","value":"#000000","key":"30%","labelColor":"#ffffff"},{"label":"color($black2 shade(50%))","value":"#000000","key":"50%","labelColor":"#ffffff"},{"label":"color($black2 shade(70%))","value":"#000000","key":"70%","labelColor":"#ffffff"}],"alphas":[{"label":"color($black2 alpha(- 0.2))","value":"rgba(0, 0, 0, 0.8)","key":"-0.2%","labelColor":"#ffffff"},{"label":"color($black2 alpha(- 0.4))","value":"rgba(0, 0, 0, 0.6)","key":"-0.4%","labelColor":"#ffffff"},{"label":"color($black2 alpha(- 0.6))","value":"rgba(0, 0, 0, 0.4)","key":"-0.6%","labelColor":"#ffffff"}]},{"original":{"label":"$gray1","value":"#999999","labelColor":"#000000"},"tints":[{"label":"color($gray1 tint(70%))","value":"#e0e0e0","key":"70%","labelColor":"#000000"},{"label":"color($gray1 tint(50%))","value":"#cccccc","key":"50%","labelColor":"#000000"},{"label":"color($gray1 tint(30%))","value":"#b8b8b8","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($gray1 shade(30%))","value":"#6b6b6b","key":"30%","labelColor":"#000000"},{"label":"color($gray1 shade(50%))","value":"#4d4d4d","key":"50%","labelColor":"#000000"},{"label":"color($gray1 shade(70%))","value":"#2e2e2e","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($gray1 alpha(- 0.2))","value":"rgba(153, 153, 153, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($gray1 alpha(- 0.4))","value":"rgba(153, 153, 153, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($gray1 alpha(- 0.6))","value":"rgba(153, 153, 153, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$blue1","value":"#55A0D2","labelColor":"#000000"},"tints":[{"label":"color($blue1 tint(70%))","value":"#cce3f2","key":"70%","labelColor":"#000000"},{"label":"color($blue1 tint(50%))","value":"#aad0e9","key":"50%","labelColor":"#000000"},{"label":"color($blue1 tint(30%))","value":"#88bde0","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($blue1 shade(30%))","value":"#3b7093","key":"30%","labelColor":"#000000"},{"label":"color($blue1 shade(50%))","value":"#2b5069","key":"50%","labelColor":"#000000"},{"label":"color($blue1 shade(70%))","value":"#1a303f","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($blue1 alpha(- 0.2))","value":"rgba(85, 160, 210, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($blue1 alpha(- 0.4))","value":"rgba(85, 160, 210, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($blue1 alpha(- 0.6))","value":"rgba(85, 160, 210, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$blue2","value":"#3778A4","labelColor":"#ffffff"},"tints":[{"label":"color($blue2 tint(70%))","value":"#c3d7e4","key":"70%","labelColor":"#ffffff"},{"label":"color($blue2 tint(50%))","value":"#9bbcd2","key":"50%","labelColor":"#ffffff"},{"label":"color($blue2 tint(30%))","value":"#73a1bf","key":"30%","labelColor":"#ffffff"}],"shades":[{"label":"color($blue2 shade(30%))","value":"#275473","key":"30%","labelColor":"#ffffff"},{"label":"color($blue2 shade(50%))","value":"#1c3c52","key":"50%","labelColor":"#ffffff"},{"label":"color($blue2 shade(70%))","value":"#112431","key":"70%","labelColor":"#ffffff"}],"alphas":[{"label":"color($blue2 alpha(- 0.2))","value":"rgba(55, 120, 164, 0.8)","key":"-0.2%","labelColor":"#ffffff"},{"label":"color($blue2 alpha(- 0.4))","value":"rgba(55, 120, 164, 0.6)","key":"-0.4%","labelColor":"#ffffff"},{"label":"color($blue2 alpha(- 0.6))","value":"rgba(55, 120, 164, 0.4)","key":"-0.6%","labelColor":"#ffffff"}]},{"original":{"label":"$green1","value":"#6CBEB0","labelColor":"#000000"},"tints":[{"label":"color($green1 tint(70%))","value":"#d3ece7","key":"70%","labelColor":"#000000"},{"label":"color($green1 tint(50%))","value":"#b6dfd8","key":"50%","labelColor":"#000000"},{"label":"color($green1 tint(30%))","value":"#98d2c8","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($green1 shade(30%))","value":"#4c857b","key":"30%","labelColor":"#000000"},{"label":"color($green1 shade(50%))","value":"#365f58","key":"50%","labelColor":"#000000"},{"label":"color($green1 shade(70%))","value":"#203935","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($green1 alpha(- 0.2))","value":"rgba(108, 190, 176, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($green1 alpha(- 0.4))","value":"rgba(108, 190, 176, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($green1 alpha(- 0.6))","value":"rgba(108, 190, 176, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$orange1","value":"#E57959","labelColor":"#000000"},"tints":[{"label":"color($orange1 tint(70%))","value":"#f7d7cd","key":"70%","labelColor":"#000000"},{"label":"color($orange1 tint(50%))","value":"#f2bcac","key":"50%","labelColor":"#000000"},{"label":"color($orange1 tint(30%))","value":"#eda18b","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($orange1 shade(30%))","value":"#a0553e","key":"30%","labelColor":"#000000"},{"label":"color($orange1 shade(50%))","value":"#733d2d","key":"50%","labelColor":"#000000"},{"label":"color($orange1 shade(70%))","value":"#45241b","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($orange1 alpha(- 0.2))","value":"rgba(229, 121, 89, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($orange1 alpha(- 0.4))","value":"rgba(229, 121, 89, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($orange1 alpha(- 0.6))","value":"rgba(229, 121, 89, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$orange2","value":"#F6B046","labelColor":"#000000"},"tints":[{"label":"color($orange2 tint(70%))","value":"#fce7c8","key":"70%","labelColor":"#000000"},{"label":"color($orange2 tint(50%))","value":"#fbd8a3","key":"50%","labelColor":"#000000"},{"label":"color($orange2 tint(30%))","value":"#f9c87e","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($orange2 shade(30%))","value":"#ac7b31","key":"30%","labelColor":"#000000"},{"label":"color($orange2 shade(50%))","value":"#7b5823","key":"50%","labelColor":"#000000"},{"label":"color($orange2 shade(70%))","value":"#4a3515","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($orange2 alpha(- 0.2))","value":"rgba(246, 176, 70, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($orange2 alpha(- 0.4))","value":"rgba(246, 176, 70, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($orange2 alpha(- 0.6))","value":"rgba(246, 176, 70, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$orange3","value":"#EE913B","labelColor":"#000000"},"tints":[{"label":"color($orange3 tint(70%))","value":"#fadec4","key":"70%","labelColor":"#000000"},{"label":"color($orange3 tint(50%))","value":"#f7c89d","key":"50%","labelColor":"#000000"},{"label":"color($orange3 tint(30%))","value":"#f3b276","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($orange3 shade(30%))","value":"#a76629","key":"30%","labelColor":"#000000"},{"label":"color($orange3 shade(50%))","value":"#77491e","key":"50%","labelColor":"#000000"},{"label":"color($orange3 shade(70%))","value":"#472c12","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($orange3 alpha(- 0.2))","value":"rgba(238, 145, 59, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($orange3 alpha(- 0.4))","value":"rgba(238, 145, 59, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($orange3 alpha(- 0.6))","value":"rgba(238, 145, 59, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$purple1","value":"#958AB2","labelColor":"#000000"},"tints":[{"label":"color($purple1 tint(70%))","value":"#dfdce8","key":"70%","labelColor":"#000000"},{"label":"color($purple1 tint(50%))","value":"#cac5d9","key":"50%","labelColor":"#000000"},{"label":"color($purple1 tint(30%))","value":"#b5adc9","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($purple1 shade(30%))","value":"#68617d","key":"30%","labelColor":"#000000"},{"label":"color($purple1 shade(50%))","value":"#4b4559","key":"50%","labelColor":"#000000"},{"label":"color($purple1 shade(70%))","value":"#2d2935","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($purple1 alpha(- 0.2))","value":"rgba(149, 138, 178, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($purple1 alpha(- 0.4))","value":"rgba(149, 138, 178, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($purple1 alpha(- 0.6))","value":"rgba(149, 138, 178, 0.4)","key":"-0.6%","labelColor":"#000000"}]},{"original":{"label":"$red1","value":"#E45750","labelColor":"#000000"},"tints":[{"label":"color($red1 tint(70%))","value":"#f7cdcb","key":"70%","labelColor":"#000000"},{"label":"color($red1 tint(50%))","value":"#f2aba8","key":"50%","labelColor":"#000000"},{"label":"color($red1 tint(30%))","value":"#ec8985","key":"30%","labelColor":"#000000"}],"shades":[{"label":"color($red1 shade(30%))","value":"#a03d38","key":"30%","labelColor":"#000000"},{"label":"color($red1 shade(50%))","value":"#722c28","key":"50%","labelColor":"#000000"},{"label":"color($red1 shade(70%))","value":"#441a18","key":"70%","labelColor":"#000000"}],"alphas":[{"label":"color($red1 alpha(- 0.2))","value":"rgba(228, 87, 80, 0.8)","key":"-0.2%","labelColor":"#000000"},{"label":"color($red1 alpha(- 0.4))","value":"rgba(228, 87, 80, 0.6)","key":"-0.4%","labelColor":"#000000"},{"label":"color($red1 alpha(- 0.6))","value":"rgba(228, 87, 80, 0.4)","key":"-0.6%","labelColor":"#000000"}]}];
+  var object = {"$white1":{"original":{"label":"$white1","value":"#FFFFFF","labelColor":"#000000"},"tints":{"70%":{"label":"color($white1 tint(70%))","value":"#ffffff","key":"70%","labelColor":"#000000"},"50%":{"label":"color($white1 tint(50%))","value":"#ffffff","key":"50%","labelColor":"#000000"},"30%":{"label":"color($white1 tint(30%))","value":"#ffffff","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($white1 shade(30%))","value":"#b3b3b3","key":"30%","labelColor":"#000000"},"50%":{"label":"color($white1 shade(50%))","value":"#808080","key":"50%","labelColor":"#000000"},"70%":{"label":"color($white1 shade(70%))","value":"#4d4d4d","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($white1 alpha(- 0.2))","value":"rgba(255, 255, 255, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($white1 alpha(- 0.4))","value":"rgba(255, 255, 255, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($white1 alpha(- 0.6))","value":"rgba(255, 255, 255, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$black1":{"original":{"label":"$black1","value":"#2A2A2A","labelColor":"#ffffff"},"tints":{"70%":{"label":"color($black1 tint(70%))","value":"#bfbfbf","key":"70%","labelColor":"#ffffff"},"50%":{"label":"color($black1 tint(50%))","value":"#959595","key":"50%","labelColor":"#ffffff"},"30%":{"label":"color($black1 tint(30%))","value":"#6a6a6a","key":"30%","labelColor":"#ffffff"}},"shades":{"30%":{"label":"color($black1 shade(30%))","value":"#1d1d1d","key":"30%","labelColor":"#ffffff"},"50%":{"label":"color($black1 shade(50%))","value":"#151515","key":"50%","labelColor":"#ffffff"},"70%":{"label":"color($black1 shade(70%))","value":"#0d0d0d","key":"70%","labelColor":"#ffffff"}},"alphas":{"-0_2%":{"label":"color($black1 alpha(- 0.2))","value":"rgba(42, 42, 42, 0.8)","key":"-0.2%","labelColor":"#ffffff"},"-0_4%":{"label":"color($black1 alpha(- 0.4))","value":"rgba(42, 42, 42, 0.6)","key":"-0.4%","labelColor":"#ffffff"},"-0_6%":{"label":"color($black1 alpha(- 0.6))","value":"rgba(42, 42, 42, 0.4)","key":"-0.6%","labelColor":"#ffffff"}}},"$black2":{"original":{"label":"$black2","value":"#000000","labelColor":"#ffffff"},"tints":{"70%":{"label":"color($black2 tint(70%))","value":"#b3b3b3","key":"70%","labelColor":"#ffffff"},"50%":{"label":"color($black2 tint(50%))","value":"#808080","key":"50%","labelColor":"#ffffff"},"30%":{"label":"color($black2 tint(30%))","value":"#4d4d4d","key":"30%","labelColor":"#ffffff"}},"shades":{"30%":{"label":"color($black2 shade(30%))","value":"#000000","key":"30%","labelColor":"#ffffff"},"50%":{"label":"color($black2 shade(50%))","value":"#000000","key":"50%","labelColor":"#ffffff"},"70%":{"label":"color($black2 shade(70%))","value":"#000000","key":"70%","labelColor":"#ffffff"}},"alphas":{"-0_2%":{"label":"color($black2 alpha(- 0.2))","value":"rgba(0, 0, 0, 0.8)","key":"-0.2%","labelColor":"#ffffff"},"-0_4%":{"label":"color($black2 alpha(- 0.4))","value":"rgba(0, 0, 0, 0.6)","key":"-0.4%","labelColor":"#ffffff"},"-0_6%":{"label":"color($black2 alpha(- 0.6))","value":"rgba(0, 0, 0, 0.4)","key":"-0.6%","labelColor":"#ffffff"}}},"$gray1":{"original":{"label":"$gray1","value":"#999999","labelColor":"#000000"},"tints":{"70%":{"label":"color($gray1 tint(70%))","value":"#e0e0e0","key":"70%","labelColor":"#000000"},"50%":{"label":"color($gray1 tint(50%))","value":"#cccccc","key":"50%","labelColor":"#000000"},"30%":{"label":"color($gray1 tint(30%))","value":"#b8b8b8","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($gray1 shade(30%))","value":"#6b6b6b","key":"30%","labelColor":"#000000"},"50%":{"label":"color($gray1 shade(50%))","value":"#4d4d4d","key":"50%","labelColor":"#000000"},"70%":{"label":"color($gray1 shade(70%))","value":"#2e2e2e","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($gray1 alpha(- 0.2))","value":"rgba(153, 153, 153, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($gray1 alpha(- 0.4))","value":"rgba(153, 153, 153, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($gray1 alpha(- 0.6))","value":"rgba(153, 153, 153, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$blue1":{"original":{"label":"$blue1","value":"#55A0D2","labelColor":"#000000"},"tints":{"70%":{"label":"color($blue1 tint(70%))","value":"#cce3f2","key":"70%","labelColor":"#000000"},"50%":{"label":"color($blue1 tint(50%))","value":"#aad0e9","key":"50%","labelColor":"#000000"},"30%":{"label":"color($blue1 tint(30%))","value":"#88bde0","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($blue1 shade(30%))","value":"#3b7093","key":"30%","labelColor":"#000000"},"50%":{"label":"color($blue1 shade(50%))","value":"#2b5069","key":"50%","labelColor":"#000000"},"70%":{"label":"color($blue1 shade(70%))","value":"#1a303f","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($blue1 alpha(- 0.2))","value":"rgba(85, 160, 210, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($blue1 alpha(- 0.4))","value":"rgba(85, 160, 210, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($blue1 alpha(- 0.6))","value":"rgba(85, 160, 210, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$blue2":{"original":{"label":"$blue2","value":"#3778A4","labelColor":"#ffffff"},"tints":{"70%":{"label":"color($blue2 tint(70%))","value":"#c3d7e4","key":"70%","labelColor":"#ffffff"},"50%":{"label":"color($blue2 tint(50%))","value":"#9bbcd2","key":"50%","labelColor":"#ffffff"},"30%":{"label":"color($blue2 tint(30%))","value":"#73a1bf","key":"30%","labelColor":"#ffffff"}},"shades":{"30%":{"label":"color($blue2 shade(30%))","value":"#275473","key":"30%","labelColor":"#ffffff"},"50%":{"label":"color($blue2 shade(50%))","value":"#1c3c52","key":"50%","labelColor":"#ffffff"},"70%":{"label":"color($blue2 shade(70%))","value":"#112431","key":"70%","labelColor":"#ffffff"}},"alphas":{"-0_2%":{"label":"color($blue2 alpha(- 0.2))","value":"rgba(55, 120, 164, 0.8)","key":"-0.2%","labelColor":"#ffffff"},"-0_4%":{"label":"color($blue2 alpha(- 0.4))","value":"rgba(55, 120, 164, 0.6)","key":"-0.4%","labelColor":"#ffffff"},"-0_6%":{"label":"color($blue2 alpha(- 0.6))","value":"rgba(55, 120, 164, 0.4)","key":"-0.6%","labelColor":"#ffffff"}}},"$green1":{"original":{"label":"$green1","value":"#6CBEB0","labelColor":"#000000"},"tints":{"70%":{"label":"color($green1 tint(70%))","value":"#d3ece7","key":"70%","labelColor":"#000000"},"50%":{"label":"color($green1 tint(50%))","value":"#b6dfd8","key":"50%","labelColor":"#000000"},"30%":{"label":"color($green1 tint(30%))","value":"#98d2c8","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($green1 shade(30%))","value":"#4c857b","key":"30%","labelColor":"#000000"},"50%":{"label":"color($green1 shade(50%))","value":"#365f58","key":"50%","labelColor":"#000000"},"70%":{"label":"color($green1 shade(70%))","value":"#203935","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($green1 alpha(- 0.2))","value":"rgba(108, 190, 176, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($green1 alpha(- 0.4))","value":"rgba(108, 190, 176, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($green1 alpha(- 0.6))","value":"rgba(108, 190, 176, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$orange1":{"original":{"label":"$orange1","value":"#E57959","labelColor":"#000000"},"tints":{"70%":{"label":"color($orange1 tint(70%))","value":"#f7d7cd","key":"70%","labelColor":"#000000"},"50%":{"label":"color($orange1 tint(50%))","value":"#f2bcac","key":"50%","labelColor":"#000000"},"30%":{"label":"color($orange1 tint(30%))","value":"#eda18b","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($orange1 shade(30%))","value":"#a0553e","key":"30%","labelColor":"#000000"},"50%":{"label":"color($orange1 shade(50%))","value":"#733d2d","key":"50%","labelColor":"#000000"},"70%":{"label":"color($orange1 shade(70%))","value":"#45241b","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($orange1 alpha(- 0.2))","value":"rgba(229, 121, 89, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($orange1 alpha(- 0.4))","value":"rgba(229, 121, 89, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($orange1 alpha(- 0.6))","value":"rgba(229, 121, 89, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$orange2":{"original":{"label":"$orange2","value":"#F6B046","labelColor":"#000000"},"tints":{"70%":{"label":"color($orange2 tint(70%))","value":"#fce7c8","key":"70%","labelColor":"#000000"},"50%":{"label":"color($orange2 tint(50%))","value":"#fbd8a3","key":"50%","labelColor":"#000000"},"30%":{"label":"color($orange2 tint(30%))","value":"#f9c87e","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($orange2 shade(30%))","value":"#ac7b31","key":"30%","labelColor":"#000000"},"50%":{"label":"color($orange2 shade(50%))","value":"#7b5823","key":"50%","labelColor":"#000000"},"70%":{"label":"color($orange2 shade(70%))","value":"#4a3515","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($orange2 alpha(- 0.2))","value":"rgba(246, 176, 70, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($orange2 alpha(- 0.4))","value":"rgba(246, 176, 70, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($orange2 alpha(- 0.6))","value":"rgba(246, 176, 70, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$orange3":{"original":{"label":"$orange3","value":"#EE913B","labelColor":"#000000"},"tints":{"70%":{"label":"color($orange3 tint(70%))","value":"#fadec4","key":"70%","labelColor":"#000000"},"50%":{"label":"color($orange3 tint(50%))","value":"#f7c89d","key":"50%","labelColor":"#000000"},"30%":{"label":"color($orange3 tint(30%))","value":"#f3b276","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($orange3 shade(30%))","value":"#a76629","key":"30%","labelColor":"#000000"},"50%":{"label":"color($orange3 shade(50%))","value":"#77491e","key":"50%","labelColor":"#000000"},"70%":{"label":"color($orange3 shade(70%))","value":"#472c12","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($orange3 alpha(- 0.2))","value":"rgba(238, 145, 59, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($orange3 alpha(- 0.4))","value":"rgba(238, 145, 59, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($orange3 alpha(- 0.6))","value":"rgba(238, 145, 59, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$purple1":{"original":{"label":"$purple1","value":"#958AB2","labelColor":"#000000"},"tints":{"70%":{"label":"color($purple1 tint(70%))","value":"#dfdce8","key":"70%","labelColor":"#000000"},"50%":{"label":"color($purple1 tint(50%))","value":"#cac5d9","key":"50%","labelColor":"#000000"},"30%":{"label":"color($purple1 tint(30%))","value":"#b5adc9","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($purple1 shade(30%))","value":"#68617d","key":"30%","labelColor":"#000000"},"50%":{"label":"color($purple1 shade(50%))","value":"#4b4559","key":"50%","labelColor":"#000000"},"70%":{"label":"color($purple1 shade(70%))","value":"#2d2935","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($purple1 alpha(- 0.2))","value":"rgba(149, 138, 178, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($purple1 alpha(- 0.4))","value":"rgba(149, 138, 178, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($purple1 alpha(- 0.6))","value":"rgba(149, 138, 178, 0.4)","key":"-0.6%","labelColor":"#000000"}}},"$red1":{"original":{"label":"$red1","value":"#E45750","labelColor":"#000000"},"tints":{"70%":{"label":"color($red1 tint(70%))","value":"#f7cdcb","key":"70%","labelColor":"#000000"},"50%":{"label":"color($red1 tint(50%))","value":"#f2aba8","key":"50%","labelColor":"#000000"},"30%":{"label":"color($red1 tint(30%))","value":"#ec8985","key":"30%","labelColor":"#000000"}},"shades":{"30%":{"label":"color($red1 shade(30%))","value":"#a03d38","key":"30%","labelColor":"#000000"},"50%":{"label":"color($red1 shade(50%))","value":"#722c28","key":"50%","labelColor":"#000000"},"70%":{"label":"color($red1 shade(70%))","value":"#441a18","key":"70%","labelColor":"#000000"}},"alphas":{"-0_2%":{"label":"color($red1 alpha(- 0.2))","value":"rgba(228, 87, 80, 0.8)","key":"-0.2%","labelColor":"#000000"},"-0_4%":{"label":"color($red1 alpha(- 0.4))","value":"rgba(228, 87, 80, 0.6)","key":"-0.4%","labelColor":"#000000"},"-0_6%":{"label":"color($red1 alpha(- 0.6))","value":"rgba(228, 87, 80, 0.4)","key":"-0.6%","labelColor":"#000000"}}}};
+  console.log('===== colorArray =====');
+  console.log(array);
+  console.log('===== colorObject =====');
+  console.log(object);
+}());
+</script>
+</head>
+<body>
+
+<h1>カラーガイド</h1>
+
+<h2>基本パレット</h2>
+
+<ul class="sg-Palette">
+    <li class="sg-Palette_Item" style="background-color:#FFFFFF;color:#000000">
+      <span class="sg-Palette_Label">$white1</span>
+      <span class="sg-Palette_ColorCode">#FFFFFF</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#2A2A2A;color:#ffffff">
+      <span class="sg-Palette_Label">$black1</span>
+      <span class="sg-Palette_ColorCode">#2A2A2A</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#000000;color:#ffffff">
+      <span class="sg-Palette_Label">$black2</span>
+      <span class="sg-Palette_ColorCode">#000000</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#999999;color:#000000">
+      <span class="sg-Palette_Label">$gray1</span>
+      <span class="sg-Palette_ColorCode">#999999</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#55A0D2;color:#000000">
+      <span class="sg-Palette_Label">$blue1</span>
+      <span class="sg-Palette_ColorCode">#55A0D2</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#3778A4;color:#ffffff">
+      <span class="sg-Palette_Label">$blue2</span>
+      <span class="sg-Palette_ColorCode">#3778A4</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#6CBEB0;color:#000000">
+      <span class="sg-Palette_Label">$green1</span>
+      <span class="sg-Palette_ColorCode">#6CBEB0</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#E57959;color:#000000">
+      <span class="sg-Palette_Label">$orange1</span>
+      <span class="sg-Palette_ColorCode">#E57959</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#F6B046;color:#000000">
+      <span class="sg-Palette_Label">$orange2</span>
+      <span class="sg-Palette_ColorCode">#F6B046</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#EE913B;color:#000000">
+      <span class="sg-Palette_Label">$orange3</span>
+      <span class="sg-Palette_ColorCode">#EE913B</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#958AB2;color:#000000">
+      <span class="sg-Palette_Label">$purple1</span>
+      <span class="sg-Palette_ColorCode">#958AB2</span>
+    </li>
+    <li class="sg-Palette_Item" style="background-color:#E45750;color:#000000">
+      <span class="sg-Palette_Label">$red1</span>
+      <span class="sg-Palette_ColorCode">#E45750</span>
+    </li>
+</ul>
+
+<h2>alpha バリエーション</h2>
+
+<div class="sg-AlphaPalette">
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#FFFFFF;color:#000000">
+        <span class="sg-AlphaPalette_Label">$white1</span>
+        <span class="sg-AlphaPalette_ColorCode">#FFFFFF</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(255, 255, 255, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($white1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(255, 255, 255, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($white1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(255, 255, 255, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($white1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#2A2A2A;color:#ffffff">
+        <span class="sg-AlphaPalette_Label">$black1</span>
+        <span class="sg-AlphaPalette_ColorCode">#2A2A2A</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(42, 42, 42, 0.8);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(42, 42, 42, 0.6);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(42, 42, 42, 0.4);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#000000;color:#ffffff">
+        <span class="sg-AlphaPalette_Label">$black2</span>
+        <span class="sg-AlphaPalette_ColorCode">#000000</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(0, 0, 0, 0.8);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black2 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(0, 0, 0, 0.6);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black2 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(0, 0, 0, 0.4);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($black2 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#999999;color:#000000">
+        <span class="sg-AlphaPalette_Label">$gray1</span>
+        <span class="sg-AlphaPalette_ColorCode">#999999</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(153, 153, 153, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($gray1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(153, 153, 153, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($gray1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(153, 153, 153, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($gray1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#55A0D2;color:#000000">
+        <span class="sg-AlphaPalette_Label">$blue1</span>
+        <span class="sg-AlphaPalette_ColorCode">#55A0D2</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(85, 160, 210, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($blue1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(85, 160, 210, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($blue1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(85, 160, 210, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($blue1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#3778A4;color:#ffffff">
+        <span class="sg-AlphaPalette_Label">$blue2</span>
+        <span class="sg-AlphaPalette_ColorCode">#3778A4</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(55, 120, 164, 0.8);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($blue2 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(55, 120, 164, 0.6);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($blue2 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(55, 120, 164, 0.4);color:#ffffff">
+          <span class="sg-AlphaPalette_Label">color($blue2 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#6CBEB0;color:#000000">
+        <span class="sg-AlphaPalette_Label">$green1</span>
+        <span class="sg-AlphaPalette_ColorCode">#6CBEB0</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(108, 190, 176, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($green1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(108, 190, 176, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($green1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(108, 190, 176, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($green1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#E57959;color:#000000">
+        <span class="sg-AlphaPalette_Label">$orange1</span>
+        <span class="sg-AlphaPalette_ColorCode">#E57959</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(229, 121, 89, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(229, 121, 89, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(229, 121, 89, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#F6B046;color:#000000">
+        <span class="sg-AlphaPalette_Label">$orange2</span>
+        <span class="sg-AlphaPalette_ColorCode">#F6B046</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(246, 176, 70, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange2 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(246, 176, 70, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange2 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(246, 176, 70, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange2 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#EE913B;color:#000000">
+        <span class="sg-AlphaPalette_Label">$orange3</span>
+        <span class="sg-AlphaPalette_ColorCode">#EE913B</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(238, 145, 59, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange3 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(238, 145, 59, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange3 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(238, 145, 59, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($orange3 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#958AB2;color:#000000">
+        <span class="sg-AlphaPalette_Label">$purple1</span>
+        <span class="sg-AlphaPalette_ColorCode">#958AB2</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(149, 138, 178, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($purple1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(149, 138, 178, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($purple1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(149, 138, 178, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($purple1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+    <ul class="sg-AlphaPalette_ColorContainer">
+      <li class="sg-AlphaPalette_Item sg-AlphaPalette_Item-original" style="background-color:#E45750;color:#000000">
+        <span class="sg-AlphaPalette_Label">$red1</span>
+        <span class="sg-AlphaPalette_ColorCode">#E45750</span>
+      </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(228, 87, 80, 0.8);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($red1 alpha(- 0.2))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(228, 87, 80, 0.6);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($red1 alpha(- 0.4))</span>
+        </li>
+        <li class="sg-AlphaPalette_Item" style="background-color:rgba(228, 87, 80, 0.4);color:#000000">
+          <span class="sg-AlphaPalette_Label">color($red1 alpha(- 0.6))</span>
+        </li>
+    </ul>
+</div>
+
+<h2>tint &amp; shade バリエーション</h2>
+
+<div class="sg-TSPalette">
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#ffffff;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#ffffff;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#ffffff;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#FFFFFF;color:#000000">
+        <span class="sg-TSPalette_Label">$white1</span>
+        <span class="sg-TSPalette_ColorCode">#FFFFFF</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#b3b3b3;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#808080;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4d4d4d;color:#000000">
+          <span class="sg-TSPalette_Label">color($white1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#bfbfbf;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#959595;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#6a6a6a;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#2A2A2A;color:#ffffff">
+        <span class="sg-TSPalette_Label">$black1</span>
+        <span class="sg-TSPalette_ColorCode">#2A2A2A</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#1d1d1d;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#151515;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#0d0d0d;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#b3b3b3;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#808080;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4d4d4d;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#000000;color:#ffffff">
+        <span class="sg-TSPalette_Label">$black2</span>
+        <span class="sg-TSPalette_ColorCode">#000000</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#000000;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#000000;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#000000;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($black2 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#e0e0e0;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#cccccc;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#b8b8b8;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#999999;color:#000000">
+        <span class="sg-TSPalette_Label">$gray1</span>
+        <span class="sg-TSPalette_ColorCode">#999999</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#6b6b6b;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4d4d4d;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#2e2e2e;color:#000000">
+          <span class="sg-TSPalette_Label">color($gray1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#cce3f2;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#aad0e9;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#88bde0;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#55A0D2;color:#000000">
+        <span class="sg-TSPalette_Label">$blue1</span>
+        <span class="sg-TSPalette_ColorCode">#55A0D2</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#3b7093;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#2b5069;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#1a303f;color:#000000">
+          <span class="sg-TSPalette_Label">color($blue1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#c3d7e4;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#9bbcd2;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#73a1bf;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#3778A4;color:#ffffff">
+        <span class="sg-TSPalette_Label">$blue2</span>
+        <span class="sg-TSPalette_ColorCode">#3778A4</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#275473;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#1c3c52;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#112431;color:#ffffff">
+          <span class="sg-TSPalette_Label">color($blue2 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#d3ece7;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#b6dfd8;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#98d2c8;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#6CBEB0;color:#000000">
+        <span class="sg-TSPalette_Label">$green1</span>
+        <span class="sg-TSPalette_ColorCode">#6CBEB0</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4c857b;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#365f58;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#203935;color:#000000">
+          <span class="sg-TSPalette_Label">color($green1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#f7d7cd;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#f2bcac;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#eda18b;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#E57959;color:#000000">
+        <span class="sg-TSPalette_Label">$orange1</span>
+        <span class="sg-TSPalette_ColorCode">#E57959</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#a0553e;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#733d2d;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#45241b;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#fce7c8;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#fbd8a3;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#f9c87e;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#F6B046;color:#000000">
+        <span class="sg-TSPalette_Label">$orange2</span>
+        <span class="sg-TSPalette_ColorCode">#F6B046</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#ac7b31;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#7b5823;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4a3515;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange2 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#fadec4;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#f7c89d;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#f3b276;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#EE913B;color:#000000">
+        <span class="sg-TSPalette_Label">$orange3</span>
+        <span class="sg-TSPalette_ColorCode">#EE913B</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#a76629;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#77491e;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#472c12;color:#000000">
+          <span class="sg-TSPalette_Label">color($orange3 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#dfdce8;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#cac5d9;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#b5adc9;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#958AB2;color:#000000">
+        <span class="sg-TSPalette_Label">$purple1</span>
+        <span class="sg-TSPalette_ColorCode">#958AB2</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#68617d;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#4b4559;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#2d2935;color:#000000">
+          <span class="sg-TSPalette_Label">color($purple1 shade(70%))</span>
+        </li>
+    </ul>
+    <ul class="sg-TSPalette_ColorContainer">
+        <li class="sg-TSPalette_Item" style="background-color:#f7cdcb;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 tint(70%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#f2aba8;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 tint(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#ec8985;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 tint(30%))</span>
+        </li>
+      <li class="sg-TSPalette_Item sg-TSPalette_Item-original" style="background-color:#E45750;color:#000000">
+        <span class="sg-TSPalette_Label">$red1</span>
+        <span class="sg-TSPalette_ColorCode">#E45750</span>
+      </li>
+        <li class="sg-TSPalette_Item" style="background-color:#a03d38;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 shade(30%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#722c28;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 shade(50%))</span>
+        </li>
+        <li class="sg-TSPalette_Item" style="background-color:#441a18;color:#000000">
+          <span class="sg-TSPalette_Label">color($red1 shade(70%))</span>
+        </li>
+    </ul>
+</div>
+
+<h2>テキストカラー</h2>
+
+<table class="sg-TextVariationList">
+  <tr>
+    <th class="sg-TextVariationList_Th">ベースのテキストカラー</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+          <li class="sg-TextVariationList_Item" style="background-color:#2A2A2A;color:#ffffff">
+            <span class="sg-TextVariationList_ItemLabel">$black1</span>
+            <span class="sg-TextVariationList_ItemColorName">#2A2A2A</span>
+          </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-TextVariationList_Th">見出し</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+          <li class="sg-TextVariationList_Item" style="background-color:#000000;color:#ffffff">
+            <span class="sg-TextVariationList_ItemLabel">$black2</span>
+            <span class="sg-TextVariationList_ItemColorName">#000000</span>
+          </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-TextVariationList_Th">補足テキスト</th>
+    <td class="sg-TextVariationList_Td">
+      <ul class="sg-TextVariationList_List">
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<h2>警告色</h2>
+
+<table class="sg-AlertVariationList">
+  <tr>
+    <th class="sg-AlertVariationList_Th">重要な警告</th>
+    <td class="sg-AlertVariationList_Td">
+      <ul class="sg-AlertVariationList_List">
+          <li class="sg-AlertVariationList_Item" style="background-color:#E45750;color:#000000">
+            <span class="sg-AlertVariationList_ItemLabel">$red1</span>
+            <span class="sg-AlertVariationList_ItemColorName">#E45750</span>
+          </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th class="sg-AlertVariationList_Th">警告</th>
+    <td class="sg-AlertVariationList_Td">
+      <ul class="sg-AlertVariationList_List">
+          <li class="sg-AlertVariationList_Item" style="background-color:#E57959;color:#000000">
+            <span class="sg-AlertVariationList_ItemLabel">$orange1</span>
+            <span class="sg-AlertVariationList_ItemColorName">#E57959</span>
+          </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+

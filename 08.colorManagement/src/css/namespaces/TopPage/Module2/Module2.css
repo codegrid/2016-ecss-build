@@ -1,0 +1,33 @@
+.top {
+  &-Module2 {
+    padding: 20px;
+    margin: 10px;
+    background-image: url(transparent.png);
+    &_Button {
+      font-size: 20px;
+      border-radius: 10px;
+      padding: 1em 1.5em;
+      color: $white1;
+      cursor: pointer;
+      border: 0;
+      &-alert {
+        background-color: $red1;
+        &:hover, &:focus {
+          background-color: color($red1 tint(30%));
+        }
+      }
+      &-warning {
+        background-color: $orange1;
+        &:hover, &:focus {
+          background-color: color($orange1 tint(30%));
+        }
+      }
+      &-safe {
+        background-color: $blue2;
+        &:hover, &:focus {
+          background-color: color($blue2 tint(30%));
+        }
+      }
+    }
+  }
+}
